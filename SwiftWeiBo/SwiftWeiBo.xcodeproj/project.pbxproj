@@ -8,10 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		F91E01BE1C43E69000DA3CEB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91E01BD1C43E69000DA3CEB /* AppDelegate.swift */; };
-		F91E01C01C43E69000DA3CEB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91E01BF1C43E69000DA3CEB /* ViewController.swift */; };
 		F91E01C51C43E69100DA3CEB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F91E01C41C43E69100DA3CEB /* Assets.xcassets */; };
 		F91E01D31C43E69100DA3CEB /* SwiftWeiBoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91E01D21C43E69100DA3CEB /* SwiftWeiBoTests.swift */; };
 		F91E01DE1C43E69100DA3CEB /* SwiftWeiBoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91E01DD1C43E69100DA3CEB /* SwiftWeiBoUITests.swift */; };
+		F91E01F41C43EA3E00DA3CEB /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91E01F31C43EA3E00DA3CEB /* MainViewController.swift */; };
+		F91E01F61C43EA9000DA3CEB /* HomeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91E01F51C43EA9000DA3CEB /* HomeTableViewController.swift */; };
+		F91E01F81C43EAA900DA3CEB /* DiscoverTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91E01F71C43EAA900DA3CEB /* DiscoverTableViewController.swift */; };
+		F91E01FA1C43EAC400DA3CEB /* MessageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91E01F91C43EAC400DA3CEB /* MessageTableViewController.swift */; };
+		F91E01FC1C43EACD00DA3CEB /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91E01FB1C43EACD00DA3CEB /* ProfileTableViewController.swift */; };
+		F91E02001C43F38500DA3CEB /* MainVCSettings.json in Resources */ = {isa = PBXBuildFile; fileRef = F91E01FE1C43F38500DA3CEB /* MainVCSettings.json */; };
+		F91E02011C43F38500DA3CEB /* NullViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91E01FF1C43F38500DA3CEB /* NullViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,7 +40,6 @@
 /* Begin PBXFileReference section */
 		F91E01BA1C43E69000DA3CEB /* SwiftWeiBo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftWeiBo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F91E01BD1C43E69000DA3CEB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F91E01BF1C43E69000DA3CEB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		F91E01C41C43E69100DA3CEB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F91E01C91C43E69100DA3CEB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F91E01CE1C43E69100DA3CEB /* SwiftWeiBoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftWeiBoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -43,6 +48,13 @@
 		F91E01D91C43E69100DA3CEB /* SwiftWeiBoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftWeiBoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F91E01DD1C43E69100DA3CEB /* SwiftWeiBoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftWeiBoUITests.swift; sourceTree = "<group>"; };
 		F91E01DF1C43E69100DA3CEB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F91E01F31C43EA3E00DA3CEB /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		F91E01F51C43EA9000DA3CEB /* HomeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTableViewController.swift; sourceTree = "<group>"; };
+		F91E01F71C43EAA900DA3CEB /* DiscoverTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverTableViewController.swift; sourceTree = "<group>"; };
+		F91E01F91C43EAC400DA3CEB /* MessageTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageTableViewController.swift; sourceTree = "<group>"; };
+		F91E01FB1C43EACD00DA3CEB /* ProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
+		F91E01FE1C43F38500DA3CEB /* MainVCSettings.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MainVCSettings.json; sourceTree = "<group>"; };
+		F91E01FF1C43F38500DA3CEB /* NullViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NullViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,8 +105,8 @@
 		F91E01BC1C43E69000DA3CEB /* SwiftWeiBo */ = {
 			isa = PBXGroup;
 			children = (
+				F91E01EB1C43E9CB00DA3CEB /* Classes */,
 				F91E01BD1C43E69000DA3CEB /* AppDelegate.swift */,
-				F91E01BF1C43E69000DA3CEB /* ViewController.swift */,
 				F91E01C41C43E69100DA3CEB /* Assets.xcassets */,
 				F91E01C91C43E69100DA3CEB /* Info.plist */,
 			);
@@ -117,6 +129,84 @@
 				F91E01DF1C43E69100DA3CEB /* Info.plist */,
 			);
 			path = SwiftWeiBoUITests;
+			sourceTree = "<group>";
+		};
+		F91E01EB1C43E9CB00DA3CEB /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				F91E01EC1C43E9CB00DA3CEB /* Comman */,
+				F91E01ED1C43E9CB00DA3CEB /* Discover */,
+				F91E01EE1C43E9CB00DA3CEB /* Home */,
+				F91E01EF1C43E9CB00DA3CEB /* Main */,
+				F91E01F01C43E9CB00DA3CEB /* Message */,
+				F91E01F11C43E9CB00DA3CEB /* Profile */,
+				F91E01F21C43E9CB00DA3CEB /* Tools */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		F91E01EC1C43E9CB00DA3CEB /* Comman */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Comman;
+			sourceTree = "<group>";
+		};
+		F91E01ED1C43E9CB00DA3CEB /* Discover */ = {
+			isa = PBXGroup;
+			children = (
+				F91E01F71C43EAA900DA3CEB /* DiscoverTableViewController.swift */,
+			);
+			path = Discover;
+			sourceTree = "<group>";
+		};
+		F91E01EE1C43E9CB00DA3CEB /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				F91E01FD1C43F38500DA3CEB /* Resource */,
+				F91E01F51C43EA9000DA3CEB /* HomeTableViewController.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		F91E01EF1C43E9CB00DA3CEB /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				F91E01F31C43EA3E00DA3CEB /* MainViewController.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		F91E01F01C43E9CB00DA3CEB /* Message */ = {
+			isa = PBXGroup;
+			children = (
+				F91E01F91C43EAC400DA3CEB /* MessageTableViewController.swift */,
+			);
+			path = Message;
+			sourceTree = "<group>";
+		};
+		F91E01F11C43E9CB00DA3CEB /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				F91E01FB1C43EACD00DA3CEB /* ProfileTableViewController.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		F91E01F21C43E9CB00DA3CEB /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
+		F91E01FD1C43F38500DA3CEB /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				F91E01FE1C43F38500DA3CEB /* MainVCSettings.json */,
+				F91E01FF1C43F38500DA3CEB /* NullViewController.swift */,
+			);
+			path = Resource;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -223,6 +313,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F91E02001C43F38500DA3CEB /* MainVCSettings.json in Resources */,
 				F91E01C51C43E69100DA3CEB /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -248,8 +339,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F91E01C01C43E69000DA3CEB /* ViewController.swift in Sources */,
+				F91E01FC1C43EACD00DA3CEB /* ProfileTableViewController.swift in Sources */,
+				F91E01F61C43EA9000DA3CEB /* HomeTableViewController.swift in Sources */,
+				F91E01F41C43EA3E00DA3CEB /* MainViewController.swift in Sources */,
+				F91E01F81C43EAA900DA3CEB /* DiscoverTableViewController.swift in Sources */,
+				F91E01FA1C43EAC400DA3CEB /* MessageTableViewController.swift in Sources */,
 				F91E01BE1C43E69000DA3CEB /* AppDelegate.swift in Sources */,
+				F91E02011C43F38500DA3CEB /* NullViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
