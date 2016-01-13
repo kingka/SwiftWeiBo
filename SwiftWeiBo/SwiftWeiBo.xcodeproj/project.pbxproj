@@ -19,6 +19,7 @@
 		F91E02001C43F38500DA3CEB /* MainVCSettings.json in Resources */ = {isa = PBXBuildFile; fileRef = F91E01FE1C43F38500DA3CEB /* MainVCSettings.json */; };
 		F91E02011C43F38500DA3CEB /* NullViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91E01FF1C43F38500DA3CEB /* NullViewController.swift */; };
 		F9DA133D1C464658003944BC /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DA133C1C464658003944BC /* BaseViewController.swift */; };
+		F9DA133F1C46498E003944BC /* VisitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DA133E1C46498E003944BC /* VisitView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		F91E01FE1C43F38500DA3CEB /* MainVCSettings.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MainVCSettings.json; sourceTree = "<group>"; };
 		F91E01FF1C43F38500DA3CEB /* NullViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NullViewController.swift; sourceTree = "<group>"; };
 		F9DA133C1C464658003944BC /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		F9DA133E1C46498E003944BC /* VisitView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisitView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,6 +178,7 @@
 			children = (
 				F91E01F31C43EA3E00DA3CEB /* MainViewController.swift */,
 				F9DA133C1C464658003944BC /* BaseViewController.swift */,
+				F9DA133E1C46498E003944BC /* VisitView.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -348,6 +351,7 @@
 				F91E01F81C43EAA900DA3CEB /* DiscoverTableViewController.swift in Sources */,
 				F91E01FA1C43EAC400DA3CEB /* MessageTableViewController.swift in Sources */,
 				F9DA133D1C464658003944BC /* BaseViewController.swift in Sources */,
+				F9DA133F1C46498E003944BC /* VisitView.swift in Sources */,
 				F91E01BE1C43E69000DA3CEB /* AppDelegate.swift in Sources */,
 				F91E02011C43F38500DA3CEB /* NullViewController.swift in Sources */,
 			);

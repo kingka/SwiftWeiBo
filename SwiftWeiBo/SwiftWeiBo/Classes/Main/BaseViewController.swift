@@ -11,8 +11,14 @@ import UIKit
 class BaseViewController: UITableViewController {
 
     let isLogin:Bool = false
-    
+    var visitView:VisitView?
     override func loadView() {
-        view = UIView()
+        isLogin ? super.loadView() : setupCustomView()
+    }
+    
+    func setupCustomView(){
+        
+        visitView = VisitView?()
+        view = visitView
     }
 }
