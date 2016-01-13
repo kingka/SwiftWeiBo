@@ -18,7 +18,7 @@ class BaseViewController: UITableViewController {
     
     func setupCustomView(){
         
-        visitView = VisitView?()
+        visitView = VisitView()
         view = visitView
     }
 }
