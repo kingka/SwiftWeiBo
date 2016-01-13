@@ -10,9 +10,15 @@ import UIKit
 
 class MainViewController: UITabBarController {
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.grayColor()
+        addChildViewController()
+        
+    }
+    
+    func addChildViewController() {
         
         //模拟从server 获取json,例如已经获取到
         //1 得到json 路径
@@ -33,16 +39,41 @@ class MainViewController: UITabBarController {
                 addChildViewController("MessageTableViewController", imageName: "tabbar_message_center", title:"" )
                 addChildViewController("DiscoverTableViewController", imageName: "tabbar_discover", title: "")
                 addChildViewController("ProfileTableViewController", imageName: "tabbar_profile", title:"" )
+                addChildViewController("NullViewController", imageName: "", title: "")
             }
             
         }
-        
-    }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        setupComposeBtn()
+    }
+    
+    //Mark:-懒加载 composeBtn
+    lazy var composeBtn:UIButton = {
+        let btn = UIButton();
+        btn.setBackgroundImage(UIImage(named: "tabbar_compose_button"), forState: UIControlState.Normal)
+        btn.setBackgroundImage(UIImage(named: "tabbar_compose_button_highlighted"), forState: UIControlState.Selected)
+        btn.setImage(UIImage(named: "tabbar_compose_icon_add_highlighted"), forState: UIControlState.Selected)
+        btn.setImage(UIImage(named: "tabbar_compose_icon_add"), forState: UIControlState.Normal)
+        btn.addTarget(self, action: "composeBtnClick", forControlEvents: UIControlEvents.TouchUpInside)
+        return btn
+    }()
+    
+    func composeBtnClick(){
+        print(__FUNCTION__)
+    }
+    
+    func setupComposeBtn(){
+        //添加到tabbar
+        tabBar.addSubview(composeBtn)
+        //计算btn宽度
+        let btnWidth = tabBar.bounds.size.width/CGFloat(viewControllers!.count)
+        composeBtn.frame = CGRectMake(2 * btnWidth, 0, btnWidth, 49)
+    }
+    
    
     //MARK:- 通过String 动态生成 Class
     private func addChildViewController(childControllerString: String,imageName:String,title:String) {
@@ -66,19 +97,6 @@ class MainViewController: UITabBarController {
         vc.navigationItem.title = title
         print(vc)
         
-    }
-/*
-    private func addChildViewController(childController: UIViewController,imageName:String,title:String) {
-        let nav = UINavigationController()
-        nav.addChildViewController(childController)
-        addChildViewController(nav)
-        childController.tabBarItem.title = title
-        childController.tabBarItem.image = UIImage(named: imageName)
-        childController.tabBarItem.selectedImage = UIImage(named: imageName+"_highlighted")
-        tabBar.tintColor = UIColor.orangeColor()
-        childController.navigationItem.title = title
-    }
-*/
-    
+    }    
 
 }
