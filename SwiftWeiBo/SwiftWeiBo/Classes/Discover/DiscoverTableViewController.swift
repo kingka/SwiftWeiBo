@@ -13,11 +13,7 @@ class DiscoverTableViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        visitView?.setupVisitInfo("登录后，最新、最热微博尽在掌握，不再会与实事潮流擦肩而过", imgName: "visitordiscover_image_message", homePage: false)
     }
 
     override func didReceiveMemoryWarning() {

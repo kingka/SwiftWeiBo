@@ -13,11 +13,8 @@ class ProfileTableViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
+        visitView?.setupVisitInfo("登录后，你的微博、相册、个人资料会显示在这里，展示给别人", imgName: "visitordiscover_image_profile", homePage: false)
 
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
     override func didReceiveMemoryWarning() {

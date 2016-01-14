@@ -20,9 +20,20 @@ class VisitView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func setupVisitInfo(message:String,imgName:String,homePage:Bool){
+        textLabel.text = message
+        homeIcon.image = UIImage(named: imgName)
+        if homePage{
+            startAnimate()
+        }else{
+            bgIcon.hidden = true
+        }
+    }
+    
     func setupUI(){
         addSubview(bgIcon)
         addSubview(homeIcon)
+        addSubview(maskBgView)
         addSubview(textLabel)
         addSubview(registerBtn)
         addSubview(loginBtn)
@@ -31,6 +42,14 @@ class VisitView: UIView {
         bgIcon.translatesAutoresizingMaskIntoConstraints = false
         let bgIconCenterXCon = NSLayoutConstraint(item: bgIcon, attribute: NSLayoutAttribute.CenterX, relatedBy: NSLayoutRelation.Equal, toItem: self, attribute: NSLayoutAttribute.CenterX, multiplier: 1.0, constant: 0)
         let bgIconCenterYCon = NSLayoutConstraint(item: bgIcon, attribute: NSLayoutAttribute.CenterY, relatedBy: NSLayoutRelation.Equal, toItem: self, attribute: NSLayoutAttribute.CenterY, multiplier: 1.0, constant: 0)
+        //mask
+        maskBgView.translatesAutoresizingMaskIntoConstraints = false
+        let maskBgIconLeft = NSLayoutConstraint(item: maskBgView, attribute: NSLayoutAttribute.Left, relatedBy: NSLayoutRelation.Equal, toItem: self, attribute: NSLayoutAttribute.Left, multiplier: 1.0, constant: 0)
+        let maskBgIconRight = NSLayoutConstraint(item: maskBgView, attribute: NSLayoutAttribute.Right, relatedBy: NSLayoutRelation.Equal, toItem: self, attribute: NSLayoutAttribute.Right, multiplier: 1.0, constant: 0)
+        let maskBgIconCenterYCon = NSLayoutConstraint(item: maskBgView, attribute: NSLayoutAttribute.CenterY, relatedBy: NSLayoutRelation.Equal, toItem: self, attribute: NSLayoutAttribute.CenterY, multiplier: 1.0, constant: -100)
+        let maskBgIconBottomCon = NSLayoutConstraint(item: maskBgView, attribute: NSLayoutAttribute.Bottom, relatedBy: NSLayoutRelation.Equal, toItem: self, attribute: NSLayoutAttribute.Bottom, multiplier: 1.0, constant: 0)
+
+        
         //HOMEICON
         homeIcon.translatesAutoresizingMaskIntoConstraints = false
         let homeIconCenterXCon = NSLayoutConstraint(item: homeIcon, attribute: NSLayoutAttribute.CenterX, relatedBy: NSLayoutRelation.Equal, toItem: self, attribute: NSLayoutAttribute.CenterX, multiplier: 1.0, constant: 0)
@@ -49,10 +68,21 @@ class VisitView: UIView {
         let regBtnHeightCon = NSLayoutConstraint(item: registerBtn, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1.0, constant: 35)
         registerBtn.addConstraint(regBtnWidthCon)
         registerBtn.addConstraint(regBtnHeightCon)
-        
+        //LOGINBTN
+        loginBtn.translatesAutoresizingMaskIntoConstraints = false
+        let loginBtnLeftCon = NSLayoutConstraint(item: loginBtn, attribute: NSLayoutAttribute.Left, relatedBy: NSLayoutRelation.Equal, toItem: registerBtn, attribute: NSLayoutAttribute.Right, multiplier: 1.0, constant: 20)
+        let loginBtnTopCon = NSLayoutConstraint(item: loginBtn, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: textLabel, attribute: NSLayoutAttribute.Bottom, multiplier: 1.0, constant: 15)
+        let rloginBtnWidthCon = NSLayoutConstraint(item: loginBtn, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1.0, constant: 100)
+        let loginBtnHeightCon = NSLayoutConstraint(item: loginBtn, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1.0, constant: 35)
+        loginBtn.addConstraint(rloginBtnWidthCon)
+        loginBtn.addConstraint(loginBtnHeightCon)
  
         addConstraint(bgIconCenterXCon)
         addConstraint(bgIconCenterYCon)
+        addConstraint(maskBgIconLeft)
+        addConstraint(maskBgIconRight)
+        addConstraint(maskBgIconCenterYCon)
+        addConstraint(maskBgIconBottomCon)
         addConstraint(homeIconCenterXCon)
         addConstraint(homeIconCenterYCon)
         textLabel.addConstraint(labelWidthCon)
@@ -61,8 +91,18 @@ class VisitView: UIView {
         
         addConstraint(regBtnLeftCon)
         addConstraint(regBtnTopCon)
+        addConstraint(loginBtnLeftCon)
+        addConstraint(loginBtnTopCon)
     }
     
+    func startAnimate(){
+        let animate = CABasicAnimation(keyPath: "transform.rotation")
+        animate.toValue = 2 * M_PI
+        animate.repeatCount = MAXFLOAT
+        animate.duration = 20
+        animate.removedOnCompletion = false
+        bgIcon.layer.addAnimation(animate, forKey: nil)
+    }
     
     lazy var bgIcon:UIImageView = {
         let icon = UIImageView(image: UIImage(named: "visitordiscover_feed_image_smallicon"))
@@ -95,7 +135,14 @@ class VisitView: UIView {
     lazy var loginBtn:UIButton = {
         let btn = UIButton()
         btn.setTitle("登陆", forState: UIControlState.Normal)
+        btn.setTitleColor(UIColor.grayColor(), forState: UIControlState.Normal)
+        btn.setBackgroundImage(UIImage(named: "common_button_white_disable"), forState: UIControlState.Normal)
         return btn
+    }()
+    
+    lazy var maskBgView:UIImageView = {
+        let icon = UIImageView(image: UIImage(named: "visitordiscover_feed_mask_smallicon"))
+        return icon
     }()
     
     

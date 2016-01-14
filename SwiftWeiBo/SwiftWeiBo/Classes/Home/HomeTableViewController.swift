@@ -13,7 +13,7 @@ class HomeTableViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
+        visitView?.setupVisitInfo("关注一些人，回这里看看有什么惊喜", imgName: "visitordiscover_feed_image_house", homePage: true)
     }
 
     override func didReceiveMemoryWarning() {
