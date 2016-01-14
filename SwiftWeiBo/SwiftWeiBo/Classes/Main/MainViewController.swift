@@ -93,7 +93,7 @@ class MainViewController: UITabBarController {
         vc.tabBarItem.title = title
         vc.tabBarItem.image = UIImage(named: imageName)
         vc.tabBarItem.selectedImage = UIImage(named: imageName+"_highlighted")
-        tabBar.tintColor = UIColor.orangeColor()
+        //tabBar.tintColor = UIColor.orangeColor()
         vc.navigationItem.title = title
         print(vc)
         

@@ -20,8 +20,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
         window?.rootViewController = vc
         window?.makeKeyAndVisible()
-        
+        setupApprence()
         return true
+    }
+    
+    func setupApprence(){
+        UINavigationBar.appearance().tintColor = UIColor.orangeColor()
+        UITabBar.appearance().tintColor = UIColor.orangeColor()
     }
 
 }

@@ -8,17 +8,32 @@
 
 import UIKit
 
-class BaseViewController: UITableViewController {
+class BaseViewController: UITableViewController ,VisitViewDelegate{
 
-    let isLogin:Bool = false
+    let isLogin:Bool = true
     var visitView:VisitView?
     override func loadView() {
         isLogin ? super.loadView() : setupCustomView()
     }
     
     func setupCustomView(){
-        
+        //初始化visitView
         visitView = VisitView()
+        visitView?.delegate = self
         view = visitView
+        // 添加 导航按钮
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "注册", style: UIBarButtonItemStyle.Plain, target: self, action: "registerDidClick")
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "登录", style: UIBarButtonItemStyle.Plain, target: self, action: "loginDidClick")
+
+      
     }
+    
+    func registerDidClick() {
+        print(__FUNCTION__)
+    }
+    
+    func loginDidClick() {
+        print(__FUNCTION__)
+    }
+    
 }

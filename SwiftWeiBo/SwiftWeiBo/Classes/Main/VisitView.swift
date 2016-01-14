@@ -8,7 +8,15 @@
 
 import UIKit
 
+protocol VisitViewDelegate:NSObjectProtocol{
+    
+     func registerDidClick()
+     func loginDidClick()
+}
+
 class VisitView: UIView {
+    
+    weak var delegate:VisitViewDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -28,6 +36,14 @@ class VisitView: UIView {
         }else{
             bgIcon.hidden = true
         }
+    }
+    
+    func registerClick(){
+        delegate?.registerDidClick()
+    }
+    
+    func loginClick(){
+        delegate?.loginDidClick()
     }
     
     func setupUI(){
@@ -129,6 +145,7 @@ class VisitView: UIView {
         btn.setTitle("注册", forState: UIControlState.Normal)
         btn.setTitleColor(UIColor.orangeColor(), forState: UIControlState.Normal)
         btn.setBackgroundImage(UIImage(named: "common_button_white_disable"), forState: UIControlState.Normal)
+        btn.addTarget(self, action: "registerClick", forControlEvents: UIControlEvents.TouchUpInside)
         return btn
     }()
     
@@ -137,6 +154,7 @@ class VisitView: UIView {
         btn.setTitle("登陆", forState: UIControlState.Normal)
         btn.setTitleColor(UIColor.grayColor(), forState: UIControlState.Normal)
         btn.setBackgroundImage(UIImage(named: "common_button_white_disable"), forState: UIControlState.Normal)
+        btn.addTarget(self, action: "loginClick", forControlEvents: UIControlEvents.TouchUpInside)
         return btn
     }()
     

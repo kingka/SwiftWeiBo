@@ -20,6 +20,8 @@
 		F91E02011C43F38500DA3CEB /* NullViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91E01FF1C43F38500DA3CEB /* NullViewController.swift */; };
 		F9DA133D1C464658003944BC /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DA133C1C464658003944BC /* BaseViewController.swift */; };
 		F9DA133F1C46498E003944BC /* VisitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DA133E1C46498E003944BC /* VisitView.swift */; };
+		F9DABF8C1C4773460005ABE8 /* UIBarButtonItem+Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DABF8B1C4773460005ABE8 /* UIBarButtonItem+Category.swift */; };
+		F9DABF8E1C477C430005ABE8 /* TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DABF8D1C477C430005ABE8 /* TitleView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +61,8 @@
 		F91E01FF1C43F38500DA3CEB /* NullViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NullViewController.swift; sourceTree = "<group>"; };
 		F9DA133C1C464658003944BC /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		F9DA133E1C46498E003944BC /* VisitView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisitView.swift; sourceTree = "<group>"; };
+		F9DABF8B1C4773460005ABE8 /* UIBarButtonItem+Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIBarButtonItem+Category.swift"; path = "SwiftWeiBo/Classes/Main/UIBarButtonItem+Category.swift"; sourceTree = SOURCE_ROOT; };
+		F9DABF8D1C477C430005ABE8 /* TitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TitleView.swift; path = SwiftWeiBo/Classes/Main/TitleView.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +156,8 @@
 		F91E01EC1C43E9CB00DA3CEB /* Comman */ = {
 			isa = PBXGroup;
 			children = (
+				F9DABF8B1C4773460005ABE8 /* UIBarButtonItem+Category.swift */,
+				F9DABF8D1C477C430005ABE8 /* TitleView.swift */,
 			);
 			path = Comman;
 			sourceTree = "<group>";
@@ -353,6 +359,8 @@
 				F9DA133D1C464658003944BC /* BaseViewController.swift in Sources */,
 				F9DA133F1C46498E003944BC /* VisitView.swift in Sources */,
 				F91E01BE1C43E69000DA3CEB /* AppDelegate.swift in Sources */,
+				F9DABF8E1C477C430005ABE8 /* TitleView.swift in Sources */,
+				F9DABF8C1C4773460005ABE8 /* UIBarButtonItem+Category.swift in Sources */,
 				F91E02011C43F38500DA3CEB /* NullViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
