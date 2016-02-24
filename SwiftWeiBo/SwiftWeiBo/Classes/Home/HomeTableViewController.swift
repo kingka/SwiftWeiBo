@@ -34,6 +34,15 @@ class HomeTableViewController: BaseViewController {
     
     func titleViewClick(btn:UIButton){
         btn.selected = !btn.selected
+        //1 弹出菜单
+        let sb = UIStoryboard(name: "PopoverViewController", bundle: nil)
+        let vc = sb.instantiateInitialViewController()
+        //2 设置转场代理
+        vc?.transitioningDelegate = self
+        //设置转场样式
+        vc?.modalPresentationStyle = UIModalPresentationStyle.Custom;
+        presentViewController(vc!, animated: true, completion: nil)
+        
          print(__FUNCTION__)
     }
     
@@ -59,6 +68,16 @@ class HomeTableViewController: BaseViewController {
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return 0
+    }
+
+}
+
+extension HomeTableViewController:UIViewControllerTransitioningDelegate{
+    
+    //实现代理方法, 告诉系统哪个对象负责转场动画
+    @available(iOS 8.0, *)
+    func presentationControllerForPresentedViewController(presented: UIViewController, presentingViewController presenting: UIViewController, sourceViewController source: UIViewController) -> UIPresentationController?{
+        return PopoverPresentationController(presentedViewController: presented, presentingViewController: presenting);
     }
 
 }
