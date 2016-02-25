@@ -11,6 +11,8 @@ import UIKit
 @available(iOS 8.0, *)
 class PopoverPresentationController: UIPresentationController {
 
+    var presentFrame = CGRectZero
+    
     override init(presentedViewController: UIViewController, presentingViewController: UIViewController) {
         super.init(presentedViewController: presentedViewController, presentingViewController: presentingViewController)
     }
@@ -20,7 +22,13 @@ class PopoverPresentationController: UIPresentationController {
         //1 修改被展示的视图
         //        containerView; // 容器视图
         //        presentedView() // 被展现的视图
-        presentedView()?.frame = CGRect(x: 100, y: 56, width: 200, height: 200)
+        if presentFrame == CGRectZero{
+            
+            presentedView()?.frame = CGRect(x: 100, y: 56, width: 200, height: 200)
+        }else
+        {
+            presentedView()?.frame = presentFrame
+        }
         //在容器下面添加一个蒙版
         containerView?.insertSubview(coverView, atIndex: 0)
         
