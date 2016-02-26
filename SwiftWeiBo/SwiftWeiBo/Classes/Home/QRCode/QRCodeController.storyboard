@@ -24,10 +24,10 @@
             </objects>
             <point key="canvasLocation" x="211" y="342"/>
         </scene>
-        <!--View Controller-->
+        <!--Code Controller-->
         <scene sceneID="l9d-9X-HOv">
             <objects>
-                <viewController id="w1O-HN-zpX" sceneMemberID="viewController">
+                <viewController id="w1O-HN-zpX" customClass="QRCodeController" customModule="SwiftWeiBo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="xBM-8w-dR5"/>
                         <viewControllerLayoutGuide type="bottom" id="2eB-WS-LFS"/>
@@ -52,9 +52,17 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ohx-85-OC7" userLabel="容器">
                                 <rect key="frame" x="10" y="134" width="300" height="300"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="KX1-Up-qDN">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="qrcode_border" translatesAutoresizingMaskIntoConstraints="NO" id="KX1-Up-qDN">
                                         <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
                                         <animations/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="qrcode_scanline_qrcode" translatesAutoresizingMaskIntoConstraints="NO" id="0AZ-RT-84s" userLabel="chongji">
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
+                                        <animations/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="300" id="eZB-Au-V9N"/>
+                                            <constraint firstAttribute="width" constant="300" id="kcr-pj-49D"/>
+                                        </constraints>
                                     </imageView>
                                 </subviews>
                                 <animations/>
@@ -64,8 +72,10 @@
                                     <constraint firstAttribute="trailing" secondItem="KX1-Up-qDN" secondAttribute="trailing" id="FlU-2j-ldJ"/>
                                     <constraint firstAttribute="bottom" secondItem="KX1-Up-qDN" secondAttribute="bottom" id="Iu9-st-bzc"/>
                                     <constraint firstAttribute="width" constant="300" id="bvh-0Q-8Si"/>
+                                    <constraint firstItem="0AZ-RT-84s" firstAttribute="centerX" secondItem="Ohx-85-OC7" secondAttribute="centerX" id="cw1-3c-jJX"/>
                                     <constraint firstAttribute="height" constant="300" id="g66-Ia-mAC"/>
                                     <constraint firstItem="KX1-Up-qDN" firstAttribute="leading" secondItem="Ohx-85-OC7" secondAttribute="leading" id="nZK-xg-mOa"/>
+                                    <constraint firstItem="0AZ-RT-84s" firstAttribute="top" secondItem="Ohx-85-OC7" secondAttribute="top" id="qBI-T7-9U1"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -80,10 +90,20 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="FRd-la-cFV">
-                        <barButtonItem key="leftBarButtonItem" title="关闭" id="IBe-7o-I9I"/>
+                        <barButtonItem key="leftBarButtonItem" title="关闭" id="IBe-7o-I9I">
+                            <connections>
+                                <action selector="close:" destination="w1O-HN-zpX" id="rJs-TD-Gbk"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="相册" id="cd1-MU-Fe2"/>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="chongjiTopConstraint" destination="qBI-T7-9U1" id="cIY-el-cqI"/>
+                        <outlet property="customTabbar" destination="O6q-NG-tKN" id="jri-16-cji"/>
+                        <outlet property="heightConstraint" destination="g66-Ia-mAC" id="80F-Sc-nir"/>
+                        <outlet property="scanLineView" destination="0AZ-RT-84s" id="1Hy-DY-cfp"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RNG-tj-OeE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -91,6 +111,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="qrcode_border" width="51" height="51"/>
+        <image name="qrcode_scanline_qrcode" width="218" height="170"/>
         <image name="qrcode_tabbar_icon_barcode" width="40" height="40"/>
         <image name="qrcode_tabbar_icon_qrcode" width="40" height="40"/>
     </resources>

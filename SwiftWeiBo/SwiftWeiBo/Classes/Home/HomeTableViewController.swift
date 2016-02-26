@@ -56,7 +56,10 @@ class HomeTableViewController: BaseViewController {
     }
     
     func rightBtnClick(){
-        print(__FUNCTION__)
+        let sb = UIStoryboard(name: "QRCodeController", bundle: nil)
+        let vc = sb.instantiateInitialViewController()!
+        presentViewController(vc, animated: true, completion: nil)
+        
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
