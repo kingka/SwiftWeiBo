@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class QRCodeController: UIViewController,UITabBarDelegate {
 
@@ -30,10 +31,34 @@ class QRCodeController: UIViewController,UITabBarDelegate {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         startAnimation()
+        startScan()
     }
 
     @IBAction func close(sender: UIBarButtonItem) {
         dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    private func startScan(){
+        //1 判断是否能够讲输入添加到会话
+        if (!session.canAddInput(deviceInput)){
+            return
+        }
+        //2 判断时候能够将输出添加到会话
+        if (!session.canAddOutput(output)){
+            return
+        }
+        //3 将输入输出添加到会话
+        session.addInput(deviceInput)
+        session.addOutput(output)
+        //4 设置输出能够解析的数据类型
+        output.metadataObjectTypes = output.availableMetadataObjectTypes
+        //注意: 设置能够解析的数据类型, 一定要在输出对象添加到会员之后设置, 否则会报错
+        //5 设置输出对象的代理，只要解析成功就通知代理
+        output.setMetadataObjectsDelegate(self, queue: dispatch_get_main_queue())
+        //添加预览图层
+        view.layer.insertSublayer(previewLayer, atIndex: 0)
+        //6 告诉session 开始扫描
+        session.startRunning()
     }
     
     func startAnimation(){
@@ -68,4 +93,34 @@ class QRCodeController: UIViewController,UITabBarDelegate {
         //重新开始
         startAnimation()
     }
+    
+    // MARK: - LAZY
+    private lazy var session:AVCaptureSession = AVCaptureSession()
+    
+    private lazy var deviceInput:AVCaptureDeviceInput? = {
+        let device = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
+        do{
+            let input = try AVCaptureDeviceInput(device: device)
+            return input
+        }catch{
+            print(error)
+            return nil
+        }
+    }()
+    
+    private lazy var output:AVCaptureMetadataOutput = AVCaptureMetadataOutput()
+    
+    private lazy var previewLayer: AVCaptureVideoPreviewLayer = {
+        let layer = AVCaptureVideoPreviewLayer(session: self.session)
+        layer.frame = UIScreen.mainScreen().bounds
+        return layer
+    }()
+    
+}
+
+extension QRCodeController:AVCaptureMetadataOutputObjectsDelegate{
+    func captureOutput(captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [AnyObject]!, fromConnection connection: AVCaptureConnection!) {
+        print(metadataObjects.last?.stringValue)
+    }
+    
 }
