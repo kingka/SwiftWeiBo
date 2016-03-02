@@ -57,6 +57,8 @@ class QRCodeController: UIViewController,UITabBarDelegate {
         output.setMetadataObjectsDelegate(self, queue: dispatch_get_main_queue())
         //添加预览图层
         view.layer.insertSublayer(previewLayer, atIndex: 0)
+        //绘制drawerLayer
+        previewLayer.addSublayer(drawLayer)
         //6 告诉session 开始扫描
         session.startRunning()
     }
@@ -116,11 +118,78 @@ class QRCodeController: UIViewController,UITabBarDelegate {
         return layer
     }()
     
+    private lazy var drawLayer: CALayer = {
+        let layer = CALayer()
+        layer.frame = UIScreen.mainScreen().bounds
+        return layer
+    }()
+    
 }
 
 extension QRCodeController:AVCaptureMetadataOutputObjectsDelegate{
     func captureOutput(captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [AnyObject]!, fromConnection connection: AVCaptureConnection!) {
-        print(metadataObjects.last?.stringValue)
+        //清除之前的layer
+        clearSublayer()
+        //1 拿到扫描数据
+       // print(metadataObjects.last?.stringValue)
+        
+        //2 获取二维码位置
+       // print(metadataObjects.last)
+        //2.1 转换坐标
+        for object in metadataObjects
+        {
+            //判断当前获取到的数据, 是否是机器可识别的类型
+            if object is AVMetadataMachineReadableCodeObject
+            {
+                //将坐标转换界面可识别的坐标
+                let codeObject = previewLayer.transformedMetadataObjectForMetadataObject(object as! AVMetadataObject) as! AVMetadataMachineReadableCodeObject
+                drawCorners(codeObject)
+            }
+        }
+    }
+    
+    //codeObject 保存了坐标的对象
+    private func drawCorners(codeObject:AVMetadataMachineReadableCodeObject){
+        if(codeObject.corners.isEmpty){
+            return
+        }
+        
+        //开始绘制
+        //1 创建一个图层
+        let layer = CAShapeLayer()
+        layer.lineWidth = 4
+        layer.strokeColor = UIColor.orangeColor().CGColor
+        layer.fillColor = UIColor.clearColor().CGColor
+        //2 创建路径
+        let path = UIBezierPath()
+        var point = CGPointZero
+        var index:Int = 0
+        //3 移动到第一个点
+        // 从corners数组中取出第0个元素, 将这个字典中的x/y赋值给point
+        CGPointMakeWithDictionaryRepresentation(codeObject.corners[index++] as! CFDictionaryRef, &point)
+        path.moveToPoint(point)
+        //4 移动到其他的点
+        while index < codeObject.corners.count{
+            CGPointMakeWithDictionaryRepresentation(codeObject.corners[index++] as! CFDictionaryRef, &point)
+            path.addLineToPoint(point)
+        }
+        //5 关闭路径
+        path.closePath()
+        //6 绘制路径
+        layer.path = path.CGPath
+        //7 将绘制好的图层添加到drawLayer上
+        drawLayer.addSublayer(layer)
+    }
+    
+    private func clearSublayer(){
+        if drawLayer.sublayers == nil || drawLayer.sublayers?.count == 0{
+            return
+        }
+        
+        for sublayer in drawLayer.sublayers!
+        {
+            sublayer.removeFromSuperlayer()
+        }
     }
     
 }
