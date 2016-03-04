@@ -21,6 +21,7 @@
 		F93370DA1C7ED994002CD754 /* PoperAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93370D91C7ED994002CD754 /* PoperAnimator.swift */; };
 		F93370DD1C7EE44F002CD754 /* QRCodeController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F93370DC1C7EE44F002CD754 /* QRCodeController.storyboard */; };
 		F93370DF1C8023EE002CD754 /* QRCodeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93370DE1C8023EE002CD754 /* QRCodeController.swift */; };
+		F93370FE1C896151002CD754 /* MyQRCodeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93370FD1C896151002CD754 /* MyQRCodeCard.swift */; };
 		F9A83BC51C7DCE3C0073AE3F /* PopoverViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9A83BC41C7DCE3C0073AE3F /* PopoverViewController.storyboard */; };
 		F9A83BC71C7DD17F0073AE3F /* PopoverPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A83BC61C7DD17F0073AE3F /* PopoverPresentationController.swift */; };
 		F9DA133D1C464658003944BC /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DA133C1C464658003944BC /* BaseViewController.swift */; };
@@ -67,6 +68,7 @@
 		F93370D91C7ED994002CD754 /* PoperAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PoperAnimator.swift; sourceTree = "<group>"; };
 		F93370DC1C7EE44F002CD754 /* QRCodeController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = QRCodeController.storyboard; sourceTree = "<group>"; };
 		F93370DE1C8023EE002CD754 /* QRCodeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeController.swift; sourceTree = "<group>"; };
+		F93370FD1C896151002CD754 /* MyQRCodeCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyQRCodeCard.swift; sourceTree = "<group>"; };
 		F9A83BC41C7DCE3C0073AE3F /* PopoverViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PopoverViewController.storyboard; sourceTree = "<group>"; };
 		F9A83BC61C7DD17F0073AE3F /* PopoverPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverPresentationController.swift; sourceTree = "<group>"; };
 		F9DA133C1C464658003944BC /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -238,6 +240,7 @@
 			children = (
 				F93370DC1C7EE44F002CD754 /* QRCodeController.storyboard */,
 				F93370DE1C8023EE002CD754 /* QRCodeController.swift */,
+				F93370FD1C896151002CD754 /* MyQRCodeCard.swift */,
 			);
 			path = QRCode;
 			sourceTree = "<group>";
@@ -397,6 +400,7 @@
 				F91E01BE1C43E69000DA3CEB /* AppDelegate.swift in Sources */,
 				F9DABF8E1C477C430005ABE8 /* TitleView.swift in Sources */,
 				F9DABF8C1C4773460005ABE8 /* UIBarButtonItem+Category.swift in Sources */,
+				F93370FE1C896151002CD754 /* MyQRCodeCard.swift in Sources */,
 				F91E02011C43F38500DA3CEB /* NullViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

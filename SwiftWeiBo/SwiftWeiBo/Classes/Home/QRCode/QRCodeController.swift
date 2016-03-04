@@ -16,6 +16,10 @@ class QRCodeController: UIViewController,UITabBarDelegate {
     @IBOutlet weak var scanLineView: UIImageView!
     @IBOutlet weak var customTabbar: UITabBar!
     
+    @IBAction func myQRCodeCard(sender: UIButton) {
+        let vc = MyQRCodeCard()
+        navigationController?.pushViewController(vc, animated: true)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         customTabbar.selectedItem = customTabbar.items![0]
@@ -55,6 +59,11 @@ class QRCodeController: UIViewController,UITabBarDelegate {
         //注意: 设置能够解析的数据类型, 一定要在输出对象添加到会员之后设置, 否则会报错
         //5 设置输出对象的代理，只要解析成功就通知代理
         output.setMetadataObjectsDelegate(self, queue: dispatch_get_main_queue())
+        
+        // 如果想实现只扫描一张图片, 那么系统自带的二维码扫描是不支持的
+        // 只能设置让二维码只有出现在某一块区域才去扫描
+        //        output.rectOfInterest = CGRectMake(0.0, 0.0, 1, 1)
+        
         //添加预览图层
         view.layer.insertSublayer(previewLayer, atIndex: 0)
         //绘制drawerLayer

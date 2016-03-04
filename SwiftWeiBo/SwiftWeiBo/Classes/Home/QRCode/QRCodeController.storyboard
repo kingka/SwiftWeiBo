@@ -78,6 +78,21 @@
                                     <constraint firstItem="0AZ-RT-84s" firstAttribute="top" secondItem="Ohx-85-OC7" secondAttribute="top" id="qBI-T7-9U1"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NsZ-AV-jKM">
+                                <rect key="frame" x="133" y="452" width="54" height="32"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="32" id="9pZ-h1-TFG"/>
+                                    <constraint firstAttribute="width" constant="54" id="AXI-8H-uS5"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <state key="normal" title="我的名片" backgroundImage="qrcode_button_background">
+                                    <color key="titleColor" red="0.1215686275" green="0.12941176469999999" blue="0.14117647059999999" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="myQRCodeCard:" destination="w1O-HN-zpX" eventType="touchUpInside" id="FTI-Fm-gnr"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -85,6 +100,8 @@
                             <constraint firstItem="O6q-NG-tKN" firstAttribute="leading" secondItem="CwL-Mr-xQw" secondAttribute="leadingMargin" constant="-20" id="EPG-1B-5lK"/>
                             <constraint firstItem="Ohx-85-OC7" firstAttribute="centerX" secondItem="CwL-Mr-xQw" secondAttribute="centerX" id="OFY-i0-Oqf"/>
                             <constraint firstAttribute="bottomMargin" secondItem="O6q-NG-tKN" secondAttribute="bottom" id="WbH-Ak-VYa"/>
+                            <constraint firstItem="NsZ-AV-jKM" firstAttribute="centerX" secondItem="CwL-Mr-xQw" secondAttribute="centerX" id="WbK-AX-Y7S"/>
+                            <constraint firstItem="NsZ-AV-jKM" firstAttribute="top" secondItem="Ohx-85-OC7" secondAttribute="bottom" constant="18" id="c4V-gK-vij"/>
                             <constraint firstAttribute="trailingMargin" secondItem="O6q-NG-tKN" secondAttribute="trailing" constant="-20" id="jiI-O9-hM0"/>
                             <constraint firstItem="Ohx-85-OC7" firstAttribute="centerY" secondItem="CwL-Mr-xQw" secondAttribute="centerY" id="lo3-Do-02i"/>
                         </constraints>
@@ -112,6 +129,7 @@
     </scenes>
     <resources>
         <image name="qrcode_border" width="51" height="51"/>
+        <image name="qrcode_button_background" width="34" height="32"/>
         <image name="qrcode_scanline_qrcode" width="218" height="170"/>
         <image name="qrcode_tabbar_icon_barcode" width="40" height="40"/>
         <image name="qrcode_tabbar_icon_qrcode" width="40" height="40"/>
