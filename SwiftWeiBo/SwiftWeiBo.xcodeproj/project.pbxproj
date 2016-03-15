@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E79A03A20D9735B3EF8BC614 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C94DCA27007B5E22D2B298A /* Pods.framework */; };
 		F91E01BE1C43E69000DA3CEB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91E01BD1C43E69000DA3CEB /* AppDelegate.swift */; };
 		F91E01C51C43E69100DA3CEB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F91E01C41C43E69100DA3CEB /* Assets.xcassets */; };
 		F91E01D31C43E69100DA3CEB /* SwiftWeiBoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91E01D21C43E69100DA3CEB /* SwiftWeiBoTests.swift */; };
@@ -48,6 +49,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9C94DCA27007B5E22D2B298A /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AE8BD0EB8FC2DA2A3D46F93C /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		F91E01BA1C43E69000DA3CEB /* SwiftWeiBo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftWeiBo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F91E01BD1C43E69000DA3CEB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F91E01C41C43E69100DA3CEB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -75,6 +78,7 @@
 		F9DA133E1C46498E003944BC /* VisitView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisitView.swift; sourceTree = "<group>"; };
 		F9DABF8B1C4773460005ABE8 /* UIBarButtonItem+Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIBarButtonItem+Category.swift"; path = "SwiftWeiBo/Classes/Main/UIBarButtonItem+Category.swift"; sourceTree = SOURCE_ROOT; };
 		F9DABF8D1C477C430005ABE8 /* TitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TitleView.swift; path = SwiftWeiBo/Classes/Main/TitleView.swift; sourceTree = SOURCE_ROOT; };
+		FAC2A5071B4D3E4E20C693F4 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +86,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E79A03A20D9735B3EF8BC614 /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -102,6 +107,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		75DBC0FF6CCEDA1A40C82772 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				AE8BD0EB8FC2DA2A3D46F93C /* Pods.debug.xcconfig */,
+				FAC2A5071B4D3E4E20C693F4 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		A9969D4F39B41F6E7DC8A8CD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9C94DCA27007B5E22D2B298A /* Pods.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		F91E01B11C43E69000DA3CEB = {
 			isa = PBXGroup;
 			children = (
@@ -109,6 +131,8 @@
 				F91E01D11C43E69100DA3CEB /* SwiftWeiBoTests */,
 				F91E01DC1C43E69100DA3CEB /* SwiftWeiBoUITests */,
 				F91E01BB1C43E69000DA3CEB /* Products */,
+				75DBC0FF6CCEDA1A40C82772 /* Pods */,
+				A9969D4F39B41F6E7DC8A8CD /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -262,9 +286,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F91E01E21C43E69100DA3CEB /* Build configuration list for PBXNativeTarget "SwiftWeiBo" */;
 			buildPhases = (
+				F6AF3886E4F63892F61BA716 /* Check Pods Manifest.lock */,
 				F91E01B61C43E69000DA3CEB /* Sources */,
 				F91E01B71C43E69000DA3CEB /* Frameworks */,
 				F91E01B81C43E69000DA3CEB /* Resources */,
+				EF4D72A62A937AFC0ADA6583 /* Embed Pods Frameworks */,
+				F16A3C45E73C2227660668E6 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -381,6 +408,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		EF4D72A62A937AFC0ADA6583 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F16A3C45E73C2227660668E6 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F6AF3886E4F63892F61BA716 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		F91E01B61C43E69000DA3CEB /* Sources */ = {
@@ -520,6 +595,7 @@
 		};
 		F91E01E31C43E69100DA3CEB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AE8BD0EB8FC2DA2A3D46F93C /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = SwiftWeiBo/Info.plist;
@@ -532,6 +608,7 @@
 		};
 		F91E01E41C43E69100DA3CEB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FAC2A5071B4D3E4E20C693F4 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = SwiftWeiBo/Info.plist;
