@@ -10,7 +10,7 @@ import UIKit
 
 class BaseViewController: UITableViewController ,VisitViewDelegate{
 
-    let isLogin:Bool = true
+    let isLogin:Bool = false
     var visitView:VisitView?
     override func loadView() {
         isLogin ? super.loadView() : setupCustomView()
@@ -30,6 +30,12 @@ class BaseViewController: UITableViewController ,VisitViewDelegate{
     
     func registerDidClick() {
         print(__FUNCTION__)
+        let oauthVC = OAuthViewController()
+        let nav = UINavigationController(rootViewController: oauthVC)
+        presentViewController(nav, animated: true) { () -> Void in
+            
+        }
+
     }
     
     func loginDidClick() {
