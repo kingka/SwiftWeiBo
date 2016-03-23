@@ -89,13 +89,18 @@ extension OAuthViewController:UIWebViewDelegate{
         let path = "oauth2/access_token"
         // 2.封装参数
         let params = ["client_id":App_Key, "client_secret":App_Secret, "grant_type":"authorization_code", "code":code, "redirect_uri":redirect_uri]
-        networkTools.POST(path, parameters: params, success: { (_, JSON) -> Void in
+        networkTools.POST(path, parameters: params, progress: { (_) -> Void in
             
+            }, success: { (_, JSON) -> Void in
+                //2.00aY6iACDo3ZsCf33b0623aelanWND
+                
+                // 创建userAccount model
+                // 归档userAccount
                 print(JSON)
             }) { (_, ERROR) -> Void in
-                
                 print(ERROR)
         }
     }
+    
 }
 
