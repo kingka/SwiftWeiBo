@@ -95,8 +95,11 @@ extension OAuthViewController:UIWebViewDelegate{
                 //2.00aY6iACDo3ZsCf33b0623aelanWND
                 
                 // 创建userAccount model
+                let userAccount = UserAccount(dict:JSON as! [String : AnyObject])
+                print(userAccount)
                 // 归档userAccount
-                print(JSON)
+                userAccount.saveAccount()
+                
             }) { (_, ERROR) -> Void in
                 print(ERROR)
         }

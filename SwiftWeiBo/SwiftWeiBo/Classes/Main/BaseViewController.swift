@@ -30,16 +30,18 @@ class BaseViewController: UITableViewController ,VisitViewDelegate{
     
     func registerDidClick() {
         print(__FUNCTION__)
+        print(UserAccount.loadAccount())
+        
+    }
+    
+    func loginDidClick() {
+        print(__FUNCTION__)
         let oauthVC = OAuthViewController()
         let nav = UINavigationController(rootViewController: oauthVC)
         presentViewController(nav, animated: true) { () -> Void in
             
         }
 
-    }
-    
-    func loginDidClick() {
-        print(__FUNCTION__)
     }
     
 }

@@ -19,6 +19,15 @@ class UserAccount: NSObject,NSCoding {
         setValuesForKeysWithDictionary(dict)
     }
     
+    override var description: String{
+        // 1.定义属性数组
+        let properties = ["access_token", "expires_in", "uid"]
+        // 2.根据属性数组, 将属性转换为字典
+        let dict =  self.dictionaryWithValuesForKeys(properties)
+        // 3.将字典转换为字符串
+        return "\(dict)"
+    }
+    
     /// 用户是否登录标记
     class func userLogin() -> Bool {
         return loadAccount() != nil
