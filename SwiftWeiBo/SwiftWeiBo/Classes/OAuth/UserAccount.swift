@@ -8,15 +8,27 @@
 
 import UIKit
 
+
 class UserAccount: NSObject,NSCoding {
 
     var access_token : String?
     var expires_in : NSNumber?
     var uid : String?
     
+    override init() {
+        
+    }
     init(dict : [String : AnyObject]){
         super.init()
-        setValuesForKeysWithDictionary(dict)
+        access_token = dict["access_token"] as? String;
+        uid = dict["uid"] as? String;
+        expires_in = dict["expires_in"] as? NSNumber;
+        
+    }
+    
+    override func valueForUndefinedKey(key: String) -> AnyObject? {
+        print(key)
+        return nil
     }
     
     override var description: String{

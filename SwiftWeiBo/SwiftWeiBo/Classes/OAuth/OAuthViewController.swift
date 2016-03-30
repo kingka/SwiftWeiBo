@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class OAuthViewController: UIViewController {
     
@@ -55,6 +56,15 @@ class OAuthViewController: UIViewController {
 }
 
 extension OAuthViewController:UIWebViewDelegate{
+    
+    func webViewDidStartLoad(webView: UIWebView) {
+        SVProgressHUD.showInfoWithStatus("Loading....")
+    }
+    
+    func webViewDidFinishLoad(webView: UIWebView) {
+        SVProgressHUD.dismiss()
+    }
+    
     func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool{
         
         //print(request.URL?.query)
