@@ -10,7 +10,7 @@ import UIKit
 
 class BaseViewController: UITableViewController ,VisitViewDelegate{
 
-    let isLogin:Bool = false
+    let isLogin:Bool = UserAccount.userLogin()
     var visitView:VisitView?
     override func loadView() {
         isLogin ? super.loadView() : setupCustomView()
@@ -30,8 +30,10 @@ class BaseViewController: UITableViewController ,VisitViewDelegate{
     
     func registerDidClick() {
         print(__FUNCTION__)
-        print(UserAccount.loadAccount())
-        
+        //print(UserAccount.loadAccount())
+        print("hehe".CacheDir())
+        print("hehe".TmpDir())
+        print("hehe".DocumentDir())
     }
     
     func loginDidClick() {

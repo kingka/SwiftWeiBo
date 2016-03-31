@@ -26,11 +26,6 @@ class UserAccount: NSObject,NSCoding {
         
     }
     
-    override func valueForUndefinedKey(key: String) -> AnyObject? {
-        print(key)
-        return nil
-    }
-    
     override var description: String{
         // 1.定义属性数组
         let properties = ["access_token", "expires_in", "uid"]
@@ -46,7 +41,7 @@ class UserAccount: NSObject,NSCoding {
     }
     
     //MARK: - 保存授权信息
-    static let accountPath = ( NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.CachesDirectory, NSSearchPathDomainMask.UserDomainMask, true).last! as NSString).stringByAppendingPathComponent("account.plist")
+    static let accountPath = "account.plist".CacheDir()
     
     func saveAccount(){
         NSKeyedArchiver.archiveRootObject(self, toFile: UserAccount.accountPath)
