@@ -30,10 +30,7 @@ class BaseViewController: UITableViewController ,VisitViewDelegate{
     
     func registerDidClick() {
         print(__FUNCTION__)
-        //print(UserAccount.loadAccount())
-        print("hehe".CacheDir())
-        print("hehe".TmpDir())
-        print("hehe".DocumentDir())
+        print(UserAccount.loadAccount())
     }
     
     func loginDidClick() {

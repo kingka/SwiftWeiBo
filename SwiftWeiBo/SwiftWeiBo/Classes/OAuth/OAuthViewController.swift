@@ -106,12 +106,22 @@ extension OAuthViewController:UIWebViewDelegate{
                 
                 // 创建userAccount model
                 let userAccount = UserAccount(dict:JSON as! [String : AnyObject])
-                print(userAccount)
-                // 归档userAccount
-                userAccount.saveAccount()
+                //获取用户信息
+                userAccount.loadUserInfo { (account, error) -> () in
+                    if account != nil
+                    {
+                        account!.saveAccount()
+                        print(account)
+                    }else{
+                        SVProgressHUD.showInfoWithStatus("网络不给力", maskType: SVProgressHUDMaskType.Black)
+                    }
+                    
+                    
+                }
                 
             }) { (_, ERROR) -> Void in
                 print(ERROR)
+                SVProgressHUD.showInfoWithStatus("\(ERROR)", maskType: SVProgressHUDMaskType.Black)
         }
     }
     
