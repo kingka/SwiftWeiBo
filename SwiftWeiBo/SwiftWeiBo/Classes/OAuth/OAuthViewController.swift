@@ -85,7 +85,7 @@ extension OAuthViewController:UIWebViewDelegate{
         if(request.URL!.query!.hasPrefix(codeStr)){
             let code = request.URL?.query?.substringFromIndex(codeStr.endIndex);
             loadAccessToken(code!)
-            close()
+            
         }else{
             close()
         }
@@ -111,7 +111,9 @@ extension OAuthViewController:UIWebViewDelegate{
                     if account != nil
                     {
                         account!.saveAccount()
-                        print(account)
+                        //跳转页面通知
+                        NSNotificationCenter.defaultCenter().postNotificationName(weiboSwitchRootControllerKey, object: false)
+                        return
                     }else{
                         SVProgressHUD.showInfoWithStatus("网络不给力", maskType: SVProgressHUDMaskType.Black)
                     }

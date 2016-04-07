@@ -85,7 +85,8 @@ class NewfeatureCell:UICollectionViewCell {
     
     
     func startBtnClick(){
-        print("startBtnClick")
+        //跳转页面通知
+        NSNotificationCenter.defaultCenter().postNotificationName(weiboSwitchRootControllerKey, object: true)
     }
     
     override init(frame: CGRect) {

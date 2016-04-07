@@ -8,6 +8,8 @@
 
 import UIKit
 
+let weiboSwitchRootControllerKey = "weiboSwitchRootControllerKey"
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -16,7 +18,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
-        let vc = WelcomeViewController()
+        //add notification obser
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "switchRootController:", name: weiboSwitchRootControllerKey, object: nil)
+        
+        let vc = defaultController()
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
         window?.rootViewController = vc
         window?.makeKeyAndVisible()
@@ -27,6 +32,41 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func setupApprence(){
         UINavigationBar.appearance().tintColor = UIColor.orangeColor()
         UITabBar.appearance().tintColor = UIColor.orangeColor()
+    }
+    
+    func defaultController()->UIViewController{
+        if UserAccount.userLogin()
+        {
+            return isNewUpdate() ? NewfeatureCollectionViewController() :  WelcomeViewController()
+        }
+        return MainViewController()
+        
+    }
+    
+    func switchRootController(notify : NSNotification){
+        let value = notify.object as! Bool
+        if value{
+           window?.rootViewController = MainViewController()
+        }else{
+            window?.rootViewController = WelcomeViewController()
+        }
+        
+    }
+    
+    func isNewUpdate()->Bool{
+        
+        //1 获取当前version
+        let currentV = NSBundle.mainBundle().infoDictionary!["CFBundleShortVersionString"] as! String
+        //2 获取以前版本
+        let oldVersion = NSUserDefaults.standardUserDefaults().valueForKey("CFBundleShortVersionString") as? String ?? ""
+        //3 比较
+        if currentV.compare(oldVersion) == NSComparisonResult.OrderedDescending
+        {
+                NSUserDefaults.standardUserDefaults().setValue(currentV, forKey: "CFBundleShortVersionString")
+            
+                return true
+        }
+        return false
     }
 
 }
