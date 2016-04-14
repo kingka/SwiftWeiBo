@@ -8,21 +8,47 @@
 
 import UIKit
 
+let HomeReuseIdentifier = "HomeReuseIdentifier"
 class HomeTableViewController: BaseViewController {
 
     //设置 中间的 view
     let btn = TitleView()
-    
+    var models : [Statuses]?{
+        didSet{
+            tableView.reloadData()
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // 判断登陆状态
         if isLogin{
             setupNavigationBarBtn()
         }else{
             visitView?.setupVisitInfo("关注一些人，回这里看看有什么惊喜", imgName: "visitordiscover_feed_image_house", homePage: true)
+            return
         }
         
+        //监听
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "change", name: PopoverAnimatorWillShow, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "change", name: PopoverAnimatorWilldismiss, object: nil)
+        
+        // 注册一个cell
+        tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: HomeReuseIdentifier)
+        
+        //加载数据
+        loadData()
+    }
+    
+    func loadData(){
+        //2 load statues
+        Statuses.loadStatuses { (list, error) -> () in
+            if error != nil
+            {
+                return
+            }
+            self.models = list
+        }
     }
     
     func setupNavigationBarBtn(){
@@ -34,6 +60,8 @@ class HomeTableViewController: BaseViewController {
         btn.addTarget(self, action: "titleViewClick:", forControlEvents: UIControlEvents.TouchUpInside)
         btn.sizeToFit()
         navigationItem.titleView = btn
+        
+        
     }
     
     func titleViewClick(btn:UIButton){
@@ -66,17 +94,7 @@ class HomeTableViewController: BaseViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
-
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
-    }
     
     //MARK: - Lazy
     private lazy var poperAnimator:PoperAnimator = {
@@ -91,5 +109,28 @@ class HomeTableViewController: BaseViewController {
     */
     func change(){
         btn.selected = !btn.selected
+    }
+}
+
+extension HomeTableViewController
+{
+    // MARK: - Table view data source
+    
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        
+        return 1
+    }
+    
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        return models?.count ?? 0
+    }
+    
+    // MARK: - Table view data source
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier(HomeReuseIdentifier, forIndexPath: indexPath)
+        let status = models![indexPath.row]
+        cell.textLabel?.text = status.text
+        return cell
     }
 }

@@ -29,6 +29,7 @@
 		F9878BDC1CACD52200858258 /* String+Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9878BDB1CACD52200858258 /* String+Category.swift */; };
 		F98911A61CB3991B00752F82 /* NewfeatureCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98911A51CB3991A00752F82 /* NewfeatureCollectionViewController.swift */; };
 		F98911EB1CB62A7B00752F82 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98911EA1CB62A7B00752F82 /* WelcomeViewController.swift */; };
+		F98911ED1CBF677900752F82 /* Statuses.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98911EC1CBF677900752F82 /* Statuses.swift */; };
 		F9A83BC51C7DCE3C0073AE3F /* PopoverViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9A83BC41C7DCE3C0073AE3F /* PopoverViewController.storyboard */; };
 		F9A83BC71C7DD17F0073AE3F /* PopoverPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A83BC61C7DD17F0073AE3F /* PopoverPresentationController.swift */; };
 		F9DA133D1C464658003944BC /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DA133C1C464658003944BC /* BaseViewController.swift */; };
@@ -84,6 +85,7 @@
 		F9878BDB1CACD52200858258 /* String+Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "String+Category.swift"; path = "SwiftWeiBo/Classes/OAuth/String+Category.swift"; sourceTree = SOURCE_ROOT; };
 		F98911A51CB3991A00752F82 /* NewfeatureCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewfeatureCollectionViewController.swift; sourceTree = "<group>"; };
 		F98911EA1CB62A7B00752F82 /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
+		F98911EC1CBF677900752F82 /* Statuses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Statuses.swift; sourceTree = "<group>"; };
 		F9A83BC41C7DCE3C0073AE3F /* PopoverViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PopoverViewController.storyboard; sourceTree = "<group>"; };
 		F9A83BC61C7DD17F0073AE3F /* PopoverPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverPresentationController.swift; sourceTree = "<group>"; };
 		F9DA133C1C464658003944BC /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -290,6 +292,7 @@
 			children = (
 				F935B20F1C97FA2B0010DF54 /* OAuthViewController.swift */,
 				F935B2301CA298BF0010DF54 /* UserAccount.swift */,
+				F98911EC1CBF677900752F82 /* Statuses.swift */,
 			);
 			path = OAuth;
 			sourceTree = "<group>";
@@ -502,6 +505,7 @@
 				F935B2311CA298BF0010DF54 /* UserAccount.swift in Sources */,
 				F91E01F61C43EA9000DA3CEB /* HomeTableViewController.swift in Sources */,
 				F91E01F41C43EA3E00DA3CEB /* MainViewController.swift in Sources */,
+				F98911ED1CBF677900752F82 /* Statuses.swift in Sources */,
 				F93370DF1C8023EE002CD754 /* QRCodeController.swift in Sources */,
 				F98911EB1CB62A7B00752F82 /* WelcomeViewController.swift in Sources */,
 				F935B2101C97FA2B0010DF54 /* OAuthViewController.swift in Sources */,
