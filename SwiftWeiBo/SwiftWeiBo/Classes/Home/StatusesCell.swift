@@ -63,9 +63,16 @@ class StatusesCell: UITableViewCell {
             make.top.equalTo(iconImageView.snp_bottom).offset(10)
             make.left.equalTo(iconImageView)
             make.right.equalTo(contentView).offset(-15)
-            make.bottom.equalTo(contentView.snp_bottom).offset(-10)
+            //make.bottom.equalTo(contentView.snp_bottom).offset(-10)
         }
         
+        bottomView.snp_makeConstraints { (make) -> Void in
+            make.width.equalTo(contentView)
+            make.left.equalTo(contentView)
+            make.top.equalTo(context.snp_bottom).offset(10)
+            make.height.equalTo(56)
+            make.bottom.equalTo(contentView.snp_bottom).offset(-10)
+        }
     }
 
     override func awakeFromNib() {
@@ -88,7 +95,8 @@ class StatusesCell: UITableViewCell {
         contentView.addSubview(date)
         contentView.addSubview(sourceFrom)
         contentView.addSubview(context)
-        
+        contentView.addSubview(bottomView)
+        //bottomView.backgroundColor = UIColor.grayColor()
         setupUI()
     }
     
@@ -123,5 +131,60 @@ class StatusesCell: UITableViewCell {
         return label
     }()
     
+    lazy var bottomView : statusBottomView = statusBottomView()
+    
 
+}
+
+class statusBottomView: UIView {
+    
+    func setupUI(){
+    
+        commentBtn?.snp_makeConstraints(closure: { (make) -> Void in
+            make.width.equalTo(156)
+            make.height.equalTo(self)
+            make.left.equalTo(self)
+            make.top.equalTo(self)
+        })
+        
+        retweetBtn?.snp_makeConstraints(closure: { (make) -> Void in
+            make.width.equalTo(56)
+            make.height.equalTo(self)
+            make.left.equalTo(commentBtn!.snp_right)
+            make.top.equalTo(self)
+        })
+        unlikeBtn?.snp_makeConstraints(closure: { (make) -> Void in
+            make.width.equalTo(56)
+            make.height.equalTo(self)
+            make.left.equalTo(retweetBtn!.snp_right)
+            make.top.equalTo(self)
+        })
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        addSubview(commentBtn!)
+        addSubview(retweetBtn!)
+        addSubview(unlikeBtn!)
+        setupUI()
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    lazy var commentBtn : UIButton? = {
+        let btn = UIButton.createButton("timeline_icon_comment",title:"评论")
+        return btn
+    }()
+    
+    lazy var retweetBtn : UIButton? = {
+        let btn = UIButton.createButton("timeline_icon_retweet",title:"转发")
+        return btn
+    }()
+    
+    lazy var unlikeBtn : UIButton? = {
+        let btn = UIButton.createButton("timeline_icon_unlike",title:"赞")
+        return btn
+    }()
 }
