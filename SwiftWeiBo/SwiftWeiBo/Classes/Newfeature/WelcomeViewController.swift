@@ -65,7 +65,7 @@ class WelcomeViewController: UIViewController {
         //bottomCons?.constant = -UIScreen.mainScreen().bounds.height -  bottomCons!.constant;
         // -736.0 + 586.0 = -150.0
         //
-        UIView.animateWithDuration(2, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 1, options: UIViewAnimationOptions(rawValue: 0), animations: { () -> Void in
+        UIView.animateWithDuration(1, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 1, options: UIViewAnimationOptions(rawValue: 0), animations: { () -> Void in
             // 头像动画
             self.bottomCons?.constant = -UIScreen.mainScreen().bounds.height -  self.bottomCons!.constant;
             self.iconView.layoutIfNeeded()
@@ -73,7 +73,7 @@ class WelcomeViewController: UIViewController {
             }) { (_) -> Void in
                 
                 // 文本动画
-                UIView.animateWithDuration( 2.0, delay: 0.0, usingSpringWithDamping: 0.8, initialSpringVelocity: 1, options: UIViewAnimationOptions(rawValue: 0), animations: { () -> Void in
+                UIView.animateWithDuration( 1.0, delay: 0.0, usingSpringWithDamping: 0.8, initialSpringVelocity: 1, options: UIViewAnimationOptions(rawValue: 0), animations: { () -> Void in
                     self.messageLabel.alpha = 1.0
                     }, completion: { (_) -> Void in
                         //跳转页面通知

@@ -34,8 +34,10 @@ class HomeTableViewController: BaseViewController {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "change", name: PopoverAnimatorWilldismiss, object: nil)
         
         // 注册一个cell
-        tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: HomeReuseIdentifier)
+        tableView.registerClass(StatusesCell.self, forCellReuseIdentifier: HomeReuseIdentifier)
         
+        tableView.estimatedRowHeight = 200
+        tableView.rowHeight = UITableViewAutomaticDimension
         //加载数据
         loadData()
     }
@@ -126,11 +128,10 @@ extension HomeTableViewController
         return models?.count ?? 0
     }
     
-    // MARK: - Table view data source
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(HomeReuseIdentifier, forIndexPath: indexPath)
-        let status = models![indexPath.row]
-        cell.textLabel?.text = status.text
+        //let cell = tableView.dequeueReusableCellWithIdentifier(HomeReuseIdentifier, forIndexPath: indexPath)
+        let cell = StatusesCell(style: UITableViewCellStyle.Default, reuseIdentifier: HomeReuseIdentifier)
+        cell.statuses = models![indexPath.row]
         return cell
     }
 }

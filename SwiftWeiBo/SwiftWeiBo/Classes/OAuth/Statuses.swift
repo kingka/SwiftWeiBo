@@ -15,6 +15,7 @@ class Statuses: NSObject {
     var text : String?
     var source : String?
     var pic_urls : [[String : AnyObject]]?
+    var user : User?
     
     
     class func dict2model(list:[[String : AnyObject]])->[Statuses]{
@@ -34,7 +35,16 @@ class Statuses: NSObject {
     }
     
     override func setValue(value: AnyObject?, forUndefinedKey key: String) {
-        print(key)
+        //print(key)
+    }
+    
+    override func setValue(value: AnyObject?, forKey key: String) {
+        super.setValue(value, forKey: key)
+        if "user" == key
+        {
+            user = User(dict: value as! [String : AnyObject])
+            print("user\(user)")
+        }
     }
     
     class func loadStatuses(finished:(list:[Statuses]?,error:NSError?)->()){
