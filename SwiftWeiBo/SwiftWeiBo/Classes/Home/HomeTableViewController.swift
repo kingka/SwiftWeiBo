@@ -38,6 +38,7 @@ class HomeTableViewController: BaseViewController {
         
         tableView.estimatedRowHeight = 200
         tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.separatorStyle = UITableViewCellSeparatorStyle.None
         //加载数据
         loadData()
     }
@@ -131,6 +132,7 @@ extension HomeTableViewController
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         //let cell = tableView.dequeueReusableCellWithIdentifier(HomeReuseIdentifier, forIndexPath: indexPath)
         let cell = StatusesCell(style: UITableViewCellStyle.Default, reuseIdentifier: HomeReuseIdentifier)
+        
         cell.statuses = models![indexPath.row]
         return cell
     }

@@ -10,10 +10,25 @@ import UIKit
 
 class Statuses: NSObject {
 
-    var created_at : String?
+    var created_at : String?{
+        didSet{
+            let date = NSDate.dateWithStr(created_at!)
+            created_at = date.descDate
+        }
+    }
     var id : Int = 0
     var text : String?
-    var source : String?
+    var source : String?{
+        didSet{
+            if source == ""{
+                return
+            }
+            let sourceStr = source! as NSString
+            let startRange = sourceStr.rangeOfString(">").location+1
+            let length = sourceStr.rangeOfString("<", options: NSStringCompareOptions.BackwardsSearch).location - startRange
+            source = sourceStr.substringWithRange(NSMakeRange(startRange, length))
+        }
+    }
     var pic_urls : [[String : AnyObject]]?
     var user : User?
     
@@ -43,7 +58,7 @@ class Statuses: NSObject {
         if "user" == key
         {
             user = User(dict: value as! [String : AnyObject])
-            print("user\(user)")
+            
         }
     }
     
@@ -52,6 +67,7 @@ class Statuses: NSObject {
         let param = ["access_token":UserAccount.loadAccount()!.access_token!]
         NetworkTools.shareNetworkTools().GET(url, parameters: param, progress: nil, success: { (_, Json) -> Void in
                 //1 json to model , 然后装在集合
+            print("json= \(Json)")
             let models = dict2model(Json!["statuses"] as! [[String: AnyObject]])
             finished(list: models, error: nil)
             }) { (_, error) -> Void in

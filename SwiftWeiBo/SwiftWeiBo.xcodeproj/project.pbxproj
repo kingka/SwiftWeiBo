@@ -34,6 +34,7 @@
 		F98911F11CC4836300752F82 /* StatusesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98911F01CC4836300752F82 /* StatusesCell.swift */; };
 		F98911F51CC4C5D200752F82 /* UILabel+Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98911F41CC4C5D200752F82 /* UILabel+Category.swift */; };
 		F98911F71CC4D35000752F82 /* UIButton+Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98911F61CC4D35000752F82 /* UIButton+Category.swift */; };
+		F98911F91CC76A2700752F82 /* NSDate+Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98911F81CC76A2600752F82 /* NSDate+Category.swift */; };
 		F9A83BC51C7DCE3C0073AE3F /* PopoverViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9A83BC41C7DCE3C0073AE3F /* PopoverViewController.storyboard */; };
 		F9A83BC71C7DD17F0073AE3F /* PopoverPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A83BC61C7DD17F0073AE3F /* PopoverPresentationController.swift */; };
 		F9DA133D1C464658003944BC /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DA133C1C464658003944BC /* BaseViewController.swift */; };
@@ -94,6 +95,7 @@
 		F98911F01CC4836300752F82 /* StatusesCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusesCell.swift; sourceTree = "<group>"; };
 		F98911F41CC4C5D200752F82 /* UILabel+Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UILabel+Category.swift"; path = "SwiftWeiBo/Classes/Home/UILabel+Category.swift"; sourceTree = SOURCE_ROOT; };
 		F98911F61CC4D35000752F82 /* UIButton+Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIButton+Category.swift"; path = "SwiftWeiBo/Classes/Home/UIButton+Category.swift"; sourceTree = SOURCE_ROOT; };
+		F98911F81CC76A2600752F82 /* NSDate+Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSDate+Category.swift"; path = "SwiftWeiBo/Classes/Home/NSDate+Category.swift"; sourceTree = SOURCE_ROOT; };
 		F9A83BC41C7DCE3C0073AE3F /* PopoverViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PopoverViewController.storyboard; sourceTree = "<group>"; };
 		F9A83BC61C7DD17F0073AE3F /* PopoverPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverPresentationController.swift; sourceTree = "<group>"; };
 		F9DA133C1C464658003944BC /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -220,6 +222,7 @@
 				F9DABF8D1C477C430005ABE8 /* TitleView.swift */,
 				F98911F41CC4C5D200752F82 /* UILabel+Category.swift */,
 				F98911F61CC4D35000752F82 /* UIButton+Category.swift */,
+				F98911F81CC76A2600752F82 /* NSDate+Category.swift */,
 			);
 			path = Comman;
 			sourceTree = "<group>";
@@ -517,6 +520,7 @@
 				F935B22D1CA0F3010010DF54 /* NetworkTools.swift in Sources */,
 				F935B2311CA298BF0010DF54 /* UserAccount.swift in Sources */,
 				F91E01F61C43EA9000DA3CEB /* HomeTableViewController.swift in Sources */,
+				F98911F91CC76A2700752F82 /* NSDate+Category.swift in Sources */,
 				F91E01F41C43EA3E00DA3CEB /* MainViewController.swift in Sources */,
 				F98911ED1CBF677900752F82 /* Statuses.swift in Sources */,
 				F93370DF1C8023EE002CD754 /* QRCodeController.swift in Sources */,

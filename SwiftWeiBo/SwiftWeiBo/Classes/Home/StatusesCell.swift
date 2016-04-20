@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class StatusesCell: UITableViewCell {
     
@@ -15,10 +16,11 @@ class StatusesCell: UITableViewCell {
         didSet{
             context.text = statuses?.text
             name.text = statuses?.user?.name
-            iconImageView.image = UIImage(named: "avatar_default_big")
-            userType.image = UIImage(named: "avatar_grassroot")
+            iconImageView.sd_setImageWithURL(statuses?.user?.avatarURL)
+            userType.image = statuses?.user?.verifiedImage
             sourceFrom.text = statuses?.source
             date.text = statuses?.created_at
+            mbrankImageView.image = statuses?.user?.mbrankImage
         }
     }
     
@@ -45,6 +47,14 @@ class StatusesCell: UITableViewCell {
             
         }
         
+        mbrankImageView.snp_makeConstraints { (make) -> Void in
+            
+            make.left.equalTo(name.snp_right).offset(10)
+            make.top.equalTo(name)
+            
+        }
+        
+        
         date.snp_makeConstraints { (make) -> Void in
             //make.width.equalTo(100)
             make.left.equalTo(iconImageView.snp_right).offset(10)
@@ -70,7 +80,7 @@ class StatusesCell: UITableViewCell {
             make.width.equalTo(contentView)
             make.left.equalTo(contentView)
             make.top.equalTo(context.snp_bottom).offset(10)
-            make.height.equalTo(56)
+            make.height.equalTo(35)
             make.bottom.equalTo(contentView.snp_bottom).offset(-10)
         }
     }
@@ -96,6 +106,7 @@ class StatusesCell: UITableViewCell {
         contentView.addSubview(sourceFrom)
         contentView.addSubview(context)
         contentView.addSubview(bottomView)
+        contentView.addSubview(mbrankImageView)
         //bottomView.backgroundColor = UIColor.grayColor()
         setupUI()
     }
@@ -132,7 +143,7 @@ class StatusesCell: UITableViewCell {
     }()
     
     lazy var bottomView : statusBottomView = statusBottomView()
-    
+    lazy var mbrankImageView : UIImageView = UIImageView()
 
 }
 
@@ -141,22 +152,23 @@ class statusBottomView: UIView {
     func setupUI(){
     
         commentBtn?.snp_makeConstraints(closure: { (make) -> Void in
-            make.width.equalTo(156)
+            make.width.equalTo(self.snp_width).dividedBy(3)
             make.height.equalTo(self)
             make.left.equalTo(self)
             make.top.equalTo(self)
         })
         
         retweetBtn?.snp_makeConstraints(closure: { (make) -> Void in
-            make.width.equalTo(56)
+            make.width.equalTo(commentBtn!)
             make.height.equalTo(self)
             make.left.equalTo(commentBtn!.snp_right)
             make.top.equalTo(self)
         })
         unlikeBtn?.snp_makeConstraints(closure: { (make) -> Void in
-            make.width.equalTo(56)
+            make.width.lessThanOrEqualTo(retweetBtn!)
             make.height.equalTo(self)
             make.left.equalTo(retweetBtn!.snp_right)
+            make.right.equalTo(self)
             make.top.equalTo(self)
         })
     }
@@ -187,4 +199,6 @@ class statusBottomView: UIView {
         let btn = UIButton.createButton("timeline_icon_unlike",title:"赞")
         return btn
     }()
+    
+    
 }
