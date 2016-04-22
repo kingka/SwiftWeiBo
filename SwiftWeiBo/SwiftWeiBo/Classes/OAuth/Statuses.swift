@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class Statuses: NSObject {
 
@@ -29,7 +30,19 @@ class Statuses: NSObject {
             source = sourceStr.substringWithRange(NSMakeRange(startRange, length))
         }
     }
-    var pic_urls : [[String : AnyObject]]?
+    var pic_urls : [[String : AnyObject]]?{
+        didSet{
+            picURLS = [NSURL]()
+            for dict in pic_urls!{
+                if let urlStr = dict["thumbnail_pic"]
+                {
+                    // 将字符串转换为URL保存到数组中
+                    picURLS?.append(NSURL(string: urlStr as! String)!)
+                }
+            }
+        }
+    }
+    var picURLS : [NSURL]?
     var user : User?
     
     
@@ -69,10 +82,39 @@ class Statuses: NSObject {
                 //1 json to model , 然后装在集合
             print("json= \(Json)")
             let models = dict2model(Json!["statuses"] as! [[String: AnyObject]])
+            
+            //cache
+            cacheImages(models)
+            
             finished(list: models, error: nil)
             }) { (_, error) -> Void in
                 finished(list: nil, error: error)
         }
+    }
+    
+    class func cacheImages(list:[Statuses]){
+        
+        let group = dispatch_group_create()
+        
+        for status in list{
+            
+            guard let _ = status.picURLS else
+            {
+                continue
+            }
+            for url in status.picURLS!{
+                dispatch_group_enter(group)
+                SDWebImageManager.sharedManager().downloadImageWithURL(url, options: SDWebImageOptions(rawValue: 0), progress: nil, completed: { (_, _, _, _, _) -> Void in
+                    
+                        dispatch_group_leave(group)
+                })
+            }
+        }
+        
+        dispatch_group_notify(group, dispatch_get_main_queue()) { () -> Void in
+            print("xiazai finished!")
+        }
+        
     }
     
     // description
