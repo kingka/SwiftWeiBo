@@ -11,6 +11,8 @@ import SDWebImage
 
 class StatusesCell: UITableViewCell {
     
+    var widthConstraint : NSLayoutConstraint?
+    var heightConstraint : NSLayoutConstraint?
     var statuses : Statuses?
         {
         didSet{
@@ -21,7 +23,57 @@ class StatusesCell: UITableViewCell {
             sourceFrom.text = statuses?.source
             date.text = statuses?.created_at
             mbrankImageView.image = statuses?.user?.mbrankImage
+            //picView的总体大小
+            widthConstraint?.constant = calculateSize().totalSize.width
+            heightConstraint?.constant = calculateSize().totalSize.height
+            // cell的大小
+            picLayout.itemSize = calculateSize().itemSize
+            // 刷新表格
+            picViews.reloadData()
+
         }
+    }
+    
+    func calculateSize()->(totalSize:CGSize,itemSize:CGSize){
+    
+        // 取出配图个数
+        let count = statuses?.picURLS?.count
+        // 如果没有配图zero
+        if count == 0 || count == nil
+        {
+            return (CGSizeZero,CGSizeZero)
+        }
+        //如果只有一张
+        if count == 1
+        {
+            // 取出缓存的图片
+            let key = statuses?.picURLS!.first?.absoluteString
+            let image = SDWebImageManager.sharedManager().imageCache.imageFromDiskCacheForKey(key!)
+            // 3.2返回缓存图片的尺寸
+            return (image.size,image.size)
+
+        }
+        //如果有4张
+        let width = 90
+        let margin = 10
+        if count == 4
+        {
+            let viewWidth = width * 2 + margin
+            return (CGSize(width: viewWidth, height: viewWidth),CGSize(width: width, height: width))
+        }
+        
+        //如果是其他张数
+        // 列数
+        let colNumber = 3
+        // 计算行数
+        //               (8 - 1) / 3 + 1
+        let rowNumber = (count! - 1) / 3 + 1
+        // 宽度 = 列数 * 图片的宽度 + (列数 - 1) * 间隙
+        let viewWidth = colNumber * width + (colNumber - 1) * margin
+        // 高度 = 行数 * 图片的高度 + (行数 - 1) * 间隙
+        let viewHeight = rowNumber * width + (rowNumber - 1) * margin
+        return (CGSize(width: viewWidth, height: viewHeight),CGSize(width: width, height: width))
+
     }
     
     func setupPicViews(){
@@ -87,9 +139,12 @@ class StatusesCell: UITableViewCell {
         picViews.snp_makeConstraints { (make) -> Void in
             make.top.equalTo(context.snp_bottom).offset(10)
             make.left.equalTo(context)
-            make.width.equalTo(150)
-            make.height.equalTo(150)
         }
+        
+        widthConstraint = NSLayoutConstraint(item: picViews, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1, constant: 150)
+        heightConstraint = NSLayoutConstraint(item: picViews, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1, constant: 150)
+        picViews.addConstraint(widthConstraint!)
+        picViews.addConstraint(heightConstraint!)
         
         bottomView.snp_makeConstraints { (make) -> Void in
             make.width.equalTo(contentView)
@@ -177,6 +232,7 @@ extension StatusesCell : UICollectionViewDataSource
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return statuses?.picURLS?.count ?? 0
     }
+    
 }
 
 class statusBottomView: UIView {
