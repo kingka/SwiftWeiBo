@@ -24,6 +24,14 @@ class StatusesCell: UITableViewCell {
         }
     }
     
+    func setupPicViews(){
+        picViews.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: "a")
+        picViews.dataSource = self
+        picLayout.minimumInteritemSpacing = 10
+        picLayout.minimumLineSpacing = 10
+        picViews.backgroundColor = UIColor.darkGrayColor()
+    }
+    
     func setupUI(){
         
         iconImageView.snp_makeConstraints { (make) -> Void in
@@ -76,10 +84,17 @@ class StatusesCell: UITableViewCell {
             //make.bottom.equalTo(contentView.snp_bottom).offset(-10)
         }
         
+        picViews.snp_makeConstraints { (make) -> Void in
+            make.top.equalTo(context.snp_bottom).offset(10)
+            make.left.equalTo(context)
+            make.width.equalTo(150)
+            make.height.equalTo(150)
+        }
+        
         bottomView.snp_makeConstraints { (make) -> Void in
             make.width.equalTo(contentView)
             make.left.equalTo(contentView)
-            make.top.equalTo(context.snp_bottom).offset(10)
+            make.top.equalTo(picViews.snp_bottom).offset(10)
             make.height.equalTo(35)
             make.bottom.equalTo(contentView.snp_bottom).offset(-10)
         }
@@ -107,7 +122,9 @@ class StatusesCell: UITableViewCell {
         contentView.addSubview(context)
         contentView.addSubview(bottomView)
         contentView.addSubview(mbrankImageView)
+        contentView.addSubview(picViews)
         //bottomView.backgroundColor = UIColor.grayColor()
+        setupPicViews()
         setupUI()
     }
     
@@ -144,7 +161,22 @@ class StatusesCell: UITableViewCell {
     
     lazy var bottomView : statusBottomView = statusBottomView()
     lazy var mbrankImageView : UIImageView = UIImageView()
+    lazy var picLayout : UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+    lazy var picViews : UICollectionView = UICollectionView(frame: CGRectZero, collectionViewLayout: self.picLayout)
 
+}
+
+extension StatusesCell : UICollectionViewDataSource
+{
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("a", forIndexPath: indexPath)
+        cell.backgroundColor = UIColor.greenColor()
+        return cell
+    }
+    
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return statuses?.picURLS?.count ?? 0
+    }
 }
 
 class statusBottomView: UIView {

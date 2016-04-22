@@ -80,19 +80,17 @@ class Statuses: NSObject {
         let param = ["access_token":UserAccount.loadAccount()!.access_token!]
         NetworkTools.shareNetworkTools().GET(url, parameters: param, progress: nil, success: { (_, Json) -> Void in
                 //1 json to model , 然后装在集合
-            print("json= \(Json)")
+            //print("json= \(Json)")
             let models = dict2model(Json!["statuses"] as! [[String: AnyObject]])
             
             //cache
-            cacheImages(models)
-            
-            finished(list: models, error: nil)
+            cacheImages(models, finished: finished)
             }) { (_, error) -> Void in
                 finished(list: nil, error: error)
         }
     }
     
-    class func cacheImages(list:[Statuses]){
+    class func cacheImages(list:[Statuses],finished:(list:[Statuses]?,error:NSError?)->()){
         
         let group = dispatch_group_create()
         
@@ -113,6 +111,7 @@ class Statuses: NSObject {
         
         dispatch_group_notify(group, dispatch_get_main_queue()) { () -> Void in
             print("xiazai finished!")
+            finished(list: list, error: nil)
         }
         
     }
