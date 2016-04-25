@@ -30,7 +30,12 @@ class StatusesCell: UITableViewCell {
             widthConstraint?.constant = caculateSize.totalSize.width
             heightConstraint?.constant = caculateSize.totalSize.height
             // cell的大小
-            picLayout.itemSize = calculateSize().itemSize
+            if caculateSize.itemSize == CGSizeZero
+            {
+                picLayout.itemSize = CGSizeMake(1, 1)
+            }else{
+                picLayout.itemSize = calculateSize().itemSize
+            }
             // 刷新表格
             picViews.reloadData()
 
@@ -230,7 +235,7 @@ class StatusesCell: UITableViewCell {
     lazy var bottomView : statusBottomView = statusBottomView()
     lazy var mbrankImageView : UIImageView = UIImageView()
     lazy var picLayout : UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-    lazy var picViews : UICollectionView = UICollectionView(frame: CGRectZero, collectionViewLayout: self.picLayout)
+    lazy var picViews : UICollectionView = UICollectionView(frame: CGRectMake(0, 0, 100, 100), collectionViewLayout: self.picLayout)
 
 }
 
@@ -280,58 +285,4 @@ class collectionCell : UICollectionViewCell
     lazy var imageView : UIImageView = UIImageView()
 }
 
-class statusBottomView: UIView {
-    
-    func setupUI(){
-    
-        commentBtn?.snp_makeConstraints(closure: { (make) -> Void in
-            make.width.equalTo(self.snp_width).dividedBy(3)
-            make.height.equalTo(self)
-            make.left.equalTo(self)
-            make.top.equalTo(self)
-        })
-        
-        retweetBtn?.snp_makeConstraints(closure: { (make) -> Void in
-            make.width.equalTo(commentBtn!)
-            make.height.equalTo(self)
-            make.left.equalTo(commentBtn!.snp_right)
-            make.top.equalTo(self)
-        })
-        unlikeBtn?.snp_makeConstraints(closure: { (make) -> Void in
-            make.width.lessThanOrEqualTo(retweetBtn!)
-            make.height.equalTo(self)
-            make.left.equalTo(retweetBtn!.snp_right)
-            make.right.equalTo(self)
-            make.top.equalTo(self)
-        })
-    }
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        addSubview(commentBtn!)
-        addSubview(retweetBtn!)
-        addSubview(unlikeBtn!)
-        setupUI()
-    }
 
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    lazy var commentBtn : UIButton? = {
-        let btn = UIButton.createButton("timeline_icon_comment",title:"评论")
-        return btn
-    }()
-    
-    lazy var retweetBtn : UIButton? = {
-        let btn = UIButton.createButton("timeline_icon_retweet",title:"转发")
-        return btn
-    }()
-    
-    lazy var unlikeBtn : UIButton? = {
-        let btn = UIButton.createButton("timeline_icon_unlike",title:"赞")
-        return btn
-    }()
-    
-    
-}
