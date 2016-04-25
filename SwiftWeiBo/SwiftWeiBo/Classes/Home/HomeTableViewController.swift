@@ -18,6 +18,10 @@ class HomeTableViewController: BaseViewController {
             tableView.reloadData()
         }
     }
+    
+    //缓存行高
+    var cacheRowHeight : [Int : CGFloat] = [Int : CGFloat]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -36,8 +40,10 @@ class HomeTableViewController: BaseViewController {
         // 注册一个cell
         tableView.registerClass(StatusesCell.self, forCellReuseIdentifier: HomeReuseIdentifier)
         
-        tableView.estimatedRowHeight = 200
-        tableView.rowHeight = UITableViewAutomaticDimension
+        //已经通过计算的方式得到了rowHeight,并且缓存了，就不需要预估
+        //tableView.estimatedRowHeight = 200
+        //tableView.rowHeight = UITableViewAutomaticDimension
+        
         tableView.separatorStyle = UITableViewCellSeparatorStyle.None
         //加载数据
         loadData()
@@ -131,9 +137,25 @@ extension HomeTableViewController
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         //let cell = tableView.dequeueReusableCellWithIdentifier(HomeReuseIdentifier, forIndexPath: indexPath)
-        let cell = StatusesCell(style: UITableViewCellStyle.Default, reuseIdentifier: HomeReuseIdentifier)
+        let cell = tableView.dequeueReusableCellWithIdentifier(HomeReuseIdentifier, forIndexPath: indexPath) as! StatusesCell
         
         cell.statuses = models![indexPath.row]
         return cell
+    }
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        //是否已经存储过对应微博id 的行高.有的话直接返回
+        let status = models![indexPath.row] 
+        if let rowHeight = cacheRowHeight[status.id]
+        {
+            //print("from cache:\(rowHeight)")
+            return rowHeight
+        }
+        //没有的话，先取出cell, 然后计算，存储，再返回
+        let cell = tableView.dequeueReusableCellWithIdentifier(HomeReuseIdentifier) as! StatusesCell
+        let rowHeight = cell.rowHeight(status)
+        cacheRowHeight[status.id] = rowHeight
+        //print("caculate rowHeight:\(rowHeight)")
+        return rowHeight
     }
 }

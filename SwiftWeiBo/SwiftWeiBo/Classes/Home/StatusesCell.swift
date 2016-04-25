@@ -9,6 +9,7 @@
 import UIKit
 import SDWebImage
 
+let collectionCellIdentifer = "cellIdentifer"
 class StatusesCell: UITableViewCell {
     
     var widthConstraint : NSLayoutConstraint?
@@ -23,15 +24,27 @@ class StatusesCell: UITableViewCell {
             sourceFrom.text = statuses?.source
             date.text = statuses?.created_at
             mbrankImageView.image = statuses?.user?.mbrankImage
+            
+            let caculateSize = calculateSize()
             //picView的总体大小
-            widthConstraint?.constant = calculateSize().totalSize.width
-            heightConstraint?.constant = calculateSize().totalSize.height
+            widthConstraint?.constant = caculateSize.totalSize.width
+            heightConstraint?.constant = caculateSize.totalSize.height
             // cell的大小
             picLayout.itemSize = calculateSize().itemSize
             // 刷新表格
             picViews.reloadData()
 
         }
+    }
+    
+    func rowHeight(status : Statuses) ->CGFloat{
+    
+        //为了计算行高
+        self.statuses = status
+        //刷新 cell
+        self.layoutIfNeeded()
+        //返回底部最大的Y值
+        return CGRectGetMaxY(bottomView.frame)
     }
     
     func calculateSize()->(totalSize:CGSize,itemSize:CGSize){
@@ -77,11 +90,11 @@ class StatusesCell: UITableViewCell {
     }
     
     func setupPicViews(){
-        picViews.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: "a")
+        picViews.registerClass(collectionCell.self, forCellWithReuseIdentifier: collectionCellIdentifer)
         picViews.dataSource = self
         picLayout.minimumInteritemSpacing = 10
         picLayout.minimumLineSpacing = 10
-        picViews.backgroundColor = UIColor.darkGrayColor()
+        picViews.backgroundColor = UIColor.whiteColor()
     }
     
     func setupUI(){
@@ -133,7 +146,7 @@ class StatusesCell: UITableViewCell {
             make.top.equalTo(iconImageView.snp_bottom).offset(10)
             make.left.equalTo(iconImageView)
             make.right.equalTo(contentView).offset(-15)
-            //make.bottom.equalTo(contentView.snp_bottom).offset(-10)
+            
         }
         
         picViews.snp_makeConstraints { (make) -> Void in
@@ -151,7 +164,7 @@ class StatusesCell: UITableViewCell {
             make.left.equalTo(contentView)
             make.top.equalTo(picViews.snp_bottom).offset(10)
             make.height.equalTo(35)
-            make.bottom.equalTo(contentView.snp_bottom).offset(-10)
+            //make.bottom.equalTo(contentView.snp_bottom).offset(-10)
         }
     }
 
@@ -224,8 +237,10 @@ class StatusesCell: UITableViewCell {
 extension StatusesCell : UICollectionViewDataSource
 {
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("a", forIndexPath: indexPath)
-        cell.backgroundColor = UIColor.greenColor()
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(collectionCellIdentifer, forIndexPath: indexPath) as! collectionCell
+        cell.imageURL = statuses?.picURLS![indexPath.row]
+        //cell.backgroundColor = UIColor.greenColor()
+        
         return cell
     }
     
@@ -233,6 +248,36 @@ extension StatusesCell : UICollectionViewDataSource
         return statuses?.picURLS?.count ?? 0
     }
     
+}
+
+class collectionCell : UICollectionViewCell
+{
+    // jie收外界传入的数据
+    var imageURL: NSURL?
+        {
+        didSet{
+            imageView.sd_setImageWithURL(imageURL!)
+        }
+    }
+    
+    func setupUI(){
+    
+        contentView.addSubview(imageView)
+        imageView.snp_makeConstraints { (make) -> Void in
+            make.edges.equalTo(contentView)
+        }
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupUI()
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    lazy var imageView : UIImageView = UIImageView()
 }
 
 class statusBottomView: UIView {
