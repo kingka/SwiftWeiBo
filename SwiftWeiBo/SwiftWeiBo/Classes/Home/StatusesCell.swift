@@ -18,12 +18,12 @@ class StatusesCell: UITableViewCell {
         {
         didSet{
             context.text = statuses?.text
-            name.text = statuses?.user?.name
-            iconImageView.sd_setImageWithURL(statuses?.user?.avatarURL)
-            userType.image = statuses?.user?.verifiedImage
-            sourceFrom.text = statuses?.source
-            date.text = statuses?.created_at
-            mbrankImageView.image = statuses?.user?.mbrankImage
+            topView.name.text = statuses?.user?.name
+            topView.iconImageView.sd_setImageWithURL(statuses?.user?.avatarURL)
+            topView.userType.image = statuses?.user?.verifiedImage
+            topView.sourceFrom.text = statuses?.source
+            topView.date.text = statuses?.created_at
+            topView.mbrankImageView.image = statuses?.user?.mbrankImage
             
             let caculateSize = calculateSize()
             //picView的总体大小
@@ -104,52 +104,17 @@ class StatusesCell: UITableViewCell {
     
     func setupUI(){
         
-        iconImageView.snp_makeConstraints { (make) -> Void in
-            make.width.equalTo(40)
-            make.height.equalTo(40)
-            make.top.equalTo(contentView).offset(10)
-            make.left.equalTo(contentView).offset(10)
+                
+        topView.snp_makeConstraints { (make) -> Void in
+            make.left.equalTo(contentView)
+            make.right.equalTo(contentView)
+            make.top.equalTo(contentView)
+            make.height.equalTo(150)
         }
-        
-        userType.snp_makeConstraints { (make) -> Void in
-            make.width.equalTo(15)
-            make.height.equalTo(15)
-            make.bottom.equalTo(iconImageView.snp_bottom).offset(5)
-            make.right.equalTo(iconImageView.snp_right).offset(5)
-        }
-        
-        name.snp_makeConstraints { (make) -> Void in
-            //make.width.equalTo(100)
-            make.left.equalTo(iconImageView.snp_right).offset(10)
-            make.top.equalTo(iconImageView)
-            
-        }
-        
-        mbrankImageView.snp_makeConstraints { (make) -> Void in
-            
-            make.left.equalTo(name.snp_right).offset(10)
-            make.top.equalTo(name)
-            
-        }
-        
-        
-        date.snp_makeConstraints { (make) -> Void in
-            //make.width.equalTo(100)
-            make.left.equalTo(iconImageView.snp_right).offset(10)
-            make.top.equalTo(name.snp_bottom).offset(5)
-            
-        }
-        
-        sourceFrom.snp_makeConstraints { (make) -> Void in
-           // make.width.equalTo(100)
-            make.left.equalTo(date.snp_right).offset(10)
-            make.top.equalTo(date)
-            
-        }
-        
+                
         context.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(iconImageView.snp_bottom).offset(10)
-            make.left.equalTo(iconImageView)
+            make.top.equalTo(topView.snp_bottom).offset(10)
+            make.left.equalTo(topView)
             make.right.equalTo(contentView).offset(-15)
             
         }
@@ -186,16 +151,11 @@ class StatusesCell: UITableViewCell {
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-
-        contentView.addSubview(iconImageView)
-        contentView.addSubview(userType)
-        contentView.addSubview(name)
-        contentView.addSubview(date)
-        contentView.addSubview(sourceFrom)
+        
         contentView.addSubview(context)
         contentView.addSubview(bottomView)
-        contentView.addSubview(mbrankImageView)
         contentView.addSubview(picViews)
+        contentView.addSubview(topView)
         //bottomView.backgroundColor = UIColor.grayColor()
         setupPicViews()
         setupUI()
@@ -208,33 +168,18 @@ class StatusesCell: UITableViewCell {
     
     
     ///MARK: - LAZY LOADING
-    lazy var iconImageView : UIImageView = UIImageView()
-    lazy var userType : UIImageView = UIImageView()
-    
-    lazy var name : UILabel = {
-        let label = UILabel.createLabel(UIColor.darkGrayColor(), fontSize: 15)
-        return label
-    }()
+    lazy var topView : statusTopView = statusTopView()
     
     lazy var context : UILabel = {
         let label = UILabel.createLabel(UIColor.darkGrayColor(), fontSize: 15)
         label.numberOfLines = 0
         return label
     }()
-    
-    lazy var sourceFrom : UILabel = {
-        let label = UILabel.createLabel(UIColor.darkGrayColor(), fontSize: 13)
-        return label
-    }()
-    
-    lazy var date : UILabel = {
-        let label = UILabel.createLabel(UIColor.darkGrayColor(), fontSize: 13)
-        return label
-    }()
-    
+
     lazy var bottomView : statusBottomView = statusBottomView()
-    lazy var mbrankImageView : UIImageView = UIImageView()
+    
     lazy var picLayout : UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+    
     lazy var picViews : UICollectionView = UICollectionView(frame: CGRectMake(0, 0, 100, 100), collectionViewLayout: self.picLayout)
 
 }
