@@ -9,6 +9,17 @@
 import UIKit
 
 class statusTopView: UIView {
+    
+    var statuses : Statuses?{
+        didSet{
+            name.text = statuses?.user?.name
+            iconImageView.sd_setImageWithURL(statuses?.user?.avatarURL)
+            userType.image = statuses?.user?.verifiedImage
+            sourceFrom.text = statuses?.source
+            date.text = statuses?.created_at
+            mbrankImageView.image = statuses?.user?.mbrankImage
+        }
+    }
 
     func setupUI(){
     
@@ -17,6 +28,7 @@ class statusTopView: UIView {
             make.height.equalTo(40)
             make.top.equalTo(self).offset(10)
             make.left.equalTo(self).offset(10)
+            make.bottom.equalTo(self.snp_bottom)
         }
         
         userType.snp_makeConstraints { (make) -> Void in

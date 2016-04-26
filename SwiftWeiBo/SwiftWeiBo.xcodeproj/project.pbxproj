@@ -43,6 +43,7 @@
 		F9DA133F1C46498E003944BC /* VisitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DA133E1C46498E003944BC /* VisitView.swift */; };
 		F9DABF8C1C4773460005ABE8 /* UIBarButtonItem+Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DABF8B1C4773460005ABE8 /* UIBarButtonItem+Category.swift */; };
 		F9DABF8E1C477C430005ABE8 /* TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DABF8D1C477C430005ABE8 /* TitleView.swift */; };
+		F9F14C261CCF4A5700DB2CE0 /* picViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F14C251CCF4A5600DB2CE0 /* picViews.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,6 +107,7 @@
 		F9DA133E1C46498E003944BC /* VisitView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisitView.swift; sourceTree = "<group>"; };
 		F9DABF8B1C4773460005ABE8 /* UIBarButtonItem+Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIBarButtonItem+Category.swift"; path = "SwiftWeiBo/Classes/Main/UIBarButtonItem+Category.swift"; sourceTree = SOURCE_ROOT; };
 		F9DABF8D1C477C430005ABE8 /* TitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TitleView.swift; path = SwiftWeiBo/Classes/Main/TitleView.swift; sourceTree = SOURCE_ROOT; };
+		F9F14C251CCF4A5600DB2CE0 /* picViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = picViews.swift; path = Resource/picViews.swift; sourceTree = "<group>"; };
 		FAC2A5071B4D3E4E20C693F4 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -248,6 +250,7 @@
 				F91E01F51C43EA9000DA3CEB /* HomeTableViewController.swift */,
 				F98911EC1CBF677900752F82 /* Statuses.swift */,
 				F98911EE1CC4806800752F82 /* User.swift */,
+				F9F14C251CCF4A5600DB2CE0 /* picViews.swift */,
 				F98911F01CC4836300752F82 /* StatusesCell.swift */,
 				F989122A1CCE17F000752F82 /* statusBottomView.swift */,
 				F989122C1CCE190300752F82 /* statusTopView.swift */,
@@ -528,6 +531,7 @@
 				F935B2311CA298BF0010DF54 /* UserAccount.swift in Sources */,
 				F91E01F61C43EA9000DA3CEB /* HomeTableViewController.swift in Sources */,
 				F989122B1CCE17F000752F82 /* statusBottomView.swift in Sources */,
+				F9F14C261CCF4A5700DB2CE0 /* picViews.swift in Sources */,
 				F98911F91CC76A2700752F82 /* NSDate+Category.swift in Sources */,
 				F91E01F41C43EA3E00DA3CEB /* MainViewController.swift in Sources */,
 				F98911ED1CBF677900752F82 /* Statuses.swift in Sources */,
