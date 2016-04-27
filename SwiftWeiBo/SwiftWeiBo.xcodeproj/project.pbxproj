@@ -45,6 +45,7 @@
 		F9DABF8E1C477C430005ABE8 /* TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9DABF8D1C477C430005ABE8 /* TitleView.swift */; };
 		F9F14C261CCF4A5700DB2CE0 /* picViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F14C251CCF4A5600DB2CE0 /* picViews.swift */; };
 		F9F14C281CD0962500DB2CE0 /* StatusesForwordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F14C271CD0962500DB2CE0 /* StatusesForwordCell.swift */; };
+		F9F14C2A1CD09E7900DB2CE0 /* StatusesNormalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F14C291CD09E7900DB2CE0 /* StatusesNormalCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,6 +111,7 @@
 		F9DABF8D1C477C430005ABE8 /* TitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TitleView.swift; path = SwiftWeiBo/Classes/Main/TitleView.swift; sourceTree = SOURCE_ROOT; };
 		F9F14C251CCF4A5600DB2CE0 /* picViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = picViews.swift; path = Resource/picViews.swift; sourceTree = "<group>"; };
 		F9F14C271CD0962500DB2CE0 /* StatusesForwordCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusesForwordCell.swift; sourceTree = "<group>"; };
+		F9F14C291CD09E7900DB2CE0 /* StatusesNormalCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusesNormalCell.swift; sourceTree = "<group>"; };
 		FAC2A5071B4D3E4E20C693F4 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -257,6 +259,7 @@
 				F989122A1CCE17F000752F82 /* statusBottomView.swift */,
 				F989122C1CCE190300752F82 /* statusTopView.swift */,
 				F9F14C271CD0962500DB2CE0 /* StatusesForwordCell.swift */,
+				F9F14C291CD09E7900DB2CE0 /* StatusesNormalCell.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -551,6 +554,7 @@
 				F9DA133D1C464658003944BC /* BaseViewController.swift in Sources */,
 				F9DA133F1C46498E003944BC /* VisitView.swift in Sources */,
 				F91E01BE1C43E69000DA3CEB /* AppDelegate.swift in Sources */,
+				F9F14C2A1CD09E7900DB2CE0 /* StatusesNormalCell.swift in Sources */,
 				F9DABF8E1C477C430005ABE8 /* TitleView.swift in Sources */,
 				F98911F51CC4C5D200752F82 /* UILabel+Category.swift in Sources */,
 				F9DABF8C1C4773460005ABE8 /* UIBarButtonItem+Category.swift in Sources */,

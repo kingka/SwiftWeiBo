@@ -58,15 +58,6 @@ class StatusesCell: UITableViewCell {
             
         }
         
-//        picView.snp_makeConstraints { (make) -> Void in
-//            make.top.equalTo(context.snp_bottom).offset(10)
-//            make.left.equalTo(context)
-//        }
-        
-//        widthConstraint = NSLayoutConstraint(item: picView, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1, constant: 150)
-//        heightConstraint = NSLayoutConstraint(item: picView, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1, constant: 150)
-//        picView.addConstraint(widthConstraint!)
-//        picView.addConstraint(heightConstraint!)
         
         bottomView.snp_makeConstraints { (make) -> Void in
             make.width.equalTo(contentView)
