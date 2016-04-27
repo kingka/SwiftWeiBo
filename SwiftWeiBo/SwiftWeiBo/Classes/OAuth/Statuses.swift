@@ -9,6 +9,17 @@
 import UIKit
 import SDWebImage
 
+//这里是为了cell 的重复利用以及判断是哪一种cell
+enum statusType : String{
+    case forwordCell = "forwordCell"
+    case normalCell = "normalCell"
+    
+    static func cellID(status:Statuses)->String{
+    
+        return status.retweeted_status != nil ? forwordCell.rawValue : normalCell.rawValue
+    }
+}
+
 class Statuses: NSObject {
 
     var created_at : String?{
@@ -44,10 +55,15 @@ class Statuses: NSObject {
     }
     var picURLS : [NSURL]?
     var user : User?
-    
+    ///转发微博
+    var retweeted_status : Statuses?
+    //如果没有转发，保存的是原创配图URL，反之保存转发配图URL
+    var retweetedPicURLS : [NSURL]?{
+        return retweeted_status != nil ? retweeted_status?.picURLS : picURLS
+    }
     
     class func dict2model(list:[[String : AnyObject]])->[Statuses]{
-        //let keys = ["created_at","id","text","source","pic_urls"]
+       
         var models = [Statuses]()
         for dict in list
         {
@@ -71,7 +87,13 @@ class Statuses: NSObject {
         if "user" == key
         {
             user = User(dict: value as! [String : AnyObject])
-            
+            return
+        }
+        
+        if "retweeted_status" == key
+        {
+            retweeted_status = Statuses(dict: value as! [String : AnyObject])
+            return
         }
     }
     
@@ -96,11 +118,11 @@ class Statuses: NSObject {
         
         for status in list{
             
-            guard let _ = status.picURLS else
+            guard let _ = status.retweetedPicURLS else
             {
                 continue
             }
-            for url in status.picURLS!{
+            for url in status.retweetedPicURLS!{
                 dispatch_group_enter(group)
                 SDWebImageManager.sharedManager().downloadImageWithURL(url, options: SDWebImageOptions(rawValue: 0), progress: nil, completed: { (_, _, _, _, _) -> Void in
                     

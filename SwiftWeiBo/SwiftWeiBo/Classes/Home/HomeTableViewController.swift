@@ -37,8 +37,9 @@ class HomeTableViewController: BaseViewController {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "change", name: PopoverAnimatorWillShow, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "change", name: PopoverAnimatorWilldismiss, object: nil)
         
-        // 注册一个cell
-        tableView.registerClass(StatusesNormalCell.self, forCellReuseIdentifier: HomeReuseIdentifier)
+        // 注册2个cell
+        tableView.registerClass(StatusesNormalCell.self, forCellReuseIdentifier: statusType.normalCell.rawValue)
+        tableView.registerClass(StatusesForwordCell.self, forCellReuseIdentifier: statusType.forwordCell.rawValue)
         
         //已经通过计算的方式得到了rowHeight,并且缓存了，就不需要预估
         //tableView.estimatedRowHeight = 200
@@ -136,10 +137,11 @@ extension HomeTableViewController
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        //let cell = tableView.dequeueReusableCellWithIdentifier(HomeReuseIdentifier, forIndexPath: indexPath)
-        let cell = tableView.dequeueReusableCellWithIdentifier(HomeReuseIdentifier, forIndexPath: indexPath) as! StatusesCell
+
+        let status = models![indexPath.row]
+        let cell = tableView.dequeueReusableCellWithIdentifier(statusType.cellID(status), forIndexPath: indexPath) as! StatusesCell
         
-        cell.statuses = models![indexPath.row]
+        cell.statuses = status
         return cell
     }
     
@@ -152,7 +154,7 @@ extension HomeTableViewController
             return rowHeight
         }
         //没有的话，先取出cell, 然后计算，存储，再返回
-        let cell = tableView.dequeueReusableCellWithIdentifier(HomeReuseIdentifier) as! StatusesCell
+        let cell = tableView.dequeueReusableCellWithIdentifier(statusType.cellID(status)) as! StatusesCell
         let rowHeight = cell.rowHeight(status)
         cacheRowHeight[status.id] = rowHeight
         //print("caculate rowHeight:\(rowHeight)")

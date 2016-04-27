@@ -22,7 +22,8 @@ class StatusesCell: UITableViewCell {
         didSet{
             context.text = statuses?.text
             topView.statuses = statuses
-            picView.statuses = statuses
+            //计算配图尺寸
+            picView.statuses = statuses?.retweeted_status != nil ? statuses?.retweeted_status :  statuses
             let caculateSize = picView.calculateSize()
             //picView的总体大小
             widthConstraint?.constant = caculateSize.width
