@@ -14,6 +14,9 @@ class StatusesCell: UITableViewCell {
     
     var widthConstraint : NSLayoutConstraint?
     var heightConstraint : NSLayoutConstraint?
+    ///topConstraint是用来控制当没有配图的时候，去除顶部的10像素约束
+    var topConstraint : NSLayoutConstraint?
+    
     var statuses : Statuses?
         {
         didSet{
@@ -24,6 +27,7 @@ class StatusesCell: UITableViewCell {
             //picView的总体大小
             widthConstraint?.constant = caculateSize.width
             heightConstraint?.constant = caculateSize.height
+            topConstraint?.constant = caculateSize.height==1 ? 0 : 10
 
         }
     }
@@ -54,15 +58,15 @@ class StatusesCell: UITableViewCell {
             
         }
         
-        picView.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(context.snp_bottom).offset(10)
-            make.left.equalTo(context)
-        }
+//        picView.snp_makeConstraints { (make) -> Void in
+//            make.top.equalTo(context.snp_bottom).offset(10)
+//            make.left.equalTo(context)
+//        }
         
-        widthConstraint = NSLayoutConstraint(item: picView, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1, constant: 150)
-        heightConstraint = NSLayoutConstraint(item: picView, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1, constant: 150)
-        picView.addConstraint(widthConstraint!)
-        picView.addConstraint(heightConstraint!)
+//        widthConstraint = NSLayoutConstraint(item: picView, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1, constant: 150)
+//        heightConstraint = NSLayoutConstraint(item: picView, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1, constant: 150)
+//        picView.addConstraint(widthConstraint!)
+//        picView.addConstraint(heightConstraint!)
         
         bottomView.snp_makeConstraints { (make) -> Void in
             make.width.equalTo(contentView)

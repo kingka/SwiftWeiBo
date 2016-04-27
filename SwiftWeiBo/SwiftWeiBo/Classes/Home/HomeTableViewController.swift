@@ -38,7 +38,7 @@ class HomeTableViewController: BaseViewController {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "change", name: PopoverAnimatorWilldismiss, object: nil)
         
         // 注册一个cell
-        tableView.registerClass(StatusesCell.self, forCellReuseIdentifier: HomeReuseIdentifier)
+        tableView.registerClass(StatusesForwordCell.self, forCellReuseIdentifier: HomeReuseIdentifier)
         
         //已经通过计算的方式得到了rowHeight,并且缓存了，就不需要预估
         //tableView.estimatedRowHeight = 200
