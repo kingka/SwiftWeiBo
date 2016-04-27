@@ -83,7 +83,7 @@ class picViews: UICollectionView {
         dataSource = self
         picLayout.minimumInteritemSpacing = 10
         picLayout.minimumLineSpacing = 10
-        backgroundColor = UIColor.whiteColor()
+        backgroundColor = UIColor.clearColor()//UIColor(white: 0.8, alpha: 0.7)
     }
 }
 

@@ -9,6 +9,15 @@
 import UIKit
 
 class StatusesForwordCell: StatusesCell {
+    
+    //重写属性的didSet方法，是不会覆盖父类原有的方法，并且也只能重写父类里面属性原有的方法，比如父类只有get,那么也只能重写get
+    override var statuses : Statuses?{
+        didSet{
+            let name = statuses?.retweeted_status?.user?.name ?? ""
+            let text = statuses?.retweeted_status?.text ?? ""
+            forwordLabel.text = "@"+name+": "+text
+        }
+    }
 
     override func setupUI() {
         
