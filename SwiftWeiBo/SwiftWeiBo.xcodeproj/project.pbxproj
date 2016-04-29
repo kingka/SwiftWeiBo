@@ -46,6 +46,8 @@
 		F9F14C261CCF4A5700DB2CE0 /* picViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F14C251CCF4A5600DB2CE0 /* picViews.swift */; };
 		F9F14C281CD0962500DB2CE0 /* StatusesForwordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F14C271CD0962500DB2CE0 /* StatusesForwordCell.swift */; };
 		F9F14C2A1CD09E7900DB2CE0 /* StatusesNormalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F14C291CD09E7900DB2CE0 /* StatusesNormalCell.swift */; };
+		F9F14C2C1CD3034200DB2CE0 /* HomeRefreshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F14C2B1CD3034200DB2CE0 /* HomeRefreshControl.swift */; };
+		F9F14C2E1CD3036900DB2CE0 /* HomeRefreshControl.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9F14C2D1CD3036900DB2CE0 /* HomeRefreshControl.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,6 +114,8 @@
 		F9F14C251CCF4A5600DB2CE0 /* picViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = picViews.swift; path = Resource/picViews.swift; sourceTree = "<group>"; };
 		F9F14C271CD0962500DB2CE0 /* StatusesForwordCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusesForwordCell.swift; sourceTree = "<group>"; };
 		F9F14C291CD09E7900DB2CE0 /* StatusesNormalCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusesNormalCell.swift; sourceTree = "<group>"; };
+		F9F14C2B1CD3034200DB2CE0 /* HomeRefreshControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeRefreshControl.swift; sourceTree = "<group>"; };
+		F9F14C2D1CD3036900DB2CE0 /* HomeRefreshControl.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeRefreshControl.xib; sourceTree = "<group>"; };
 		FAC2A5071B4D3E4E20C693F4 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -260,6 +264,8 @@
 				F989122C1CCE190300752F82 /* statusTopView.swift */,
 				F9F14C271CD0962500DB2CE0 /* StatusesForwordCell.swift */,
 				F9F14C291CD09E7900DB2CE0 /* StatusesNormalCell.swift */,
+				F9F14C2B1CD3034200DB2CE0 /* HomeRefreshControl.swift */,
+				F9F14C2D1CD3036900DB2CE0 /* HomeRefreshControl.xib */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -454,6 +460,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F9F14C2E1CD3036900DB2CE0 /* HomeRefreshControl.xib in Resources */,
 				F93370DD1C7EE44F002CD754 /* QRCodeController.storyboard in Resources */,
 				F9A83BC51C7DCE3C0073AE3F /* PopoverViewController.storyboard in Resources */,
 				F91E02001C43F38500DA3CEB /* MainVCSettings.json in Resources */,
@@ -546,6 +553,7 @@
 				F98911EB1CB62A7B00752F82 /* WelcomeViewController.swift in Sources */,
 				F935B2101C97FA2B0010DF54 /* OAuthViewController.swift in Sources */,
 				F91E01F81C43EAA900DA3CEB /* DiscoverTableViewController.swift in Sources */,
+				F9F14C2C1CD3034200DB2CE0 /* HomeRefreshControl.swift in Sources */,
 				F98911A61CB3991B00752F82 /* NewfeatureCollectionViewController.swift in Sources */,
 				F93370DA1C7ED994002CD754 /* PoperAnimator.swift in Sources */,
 				F98911F71CC4D35000752F82 /* UIButton+Category.swift in Sources */,

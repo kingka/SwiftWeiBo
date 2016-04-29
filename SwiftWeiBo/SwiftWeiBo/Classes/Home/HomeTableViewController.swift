@@ -22,6 +22,11 @@ class HomeTableViewController: BaseViewController {
     //缓存行高
     var cacheRowHeight : [Int : CGFloat] = [Int : CGFloat]()
     
+    override func didReceiveMemoryWarning() {
+        // 清空缓存
+        cacheRowHeight.removeAll()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -48,16 +53,36 @@ class HomeTableViewController: BaseViewController {
         tableView.separatorStyle = UITableViewCellSeparatorStyle.None
         //加载数据
         loadData()
+        
+        refreshControl = HomeRefreshControl()
+        refreshControl?.addTarget(self, action: "loadData", forControlEvents: UIControlEvents.ValueChanged)
     }
     
+
+    
     func loadData(){
+        
+        let since_id = models?.first?.id ?? 0
+        
         //2 load statues
         Statuses.loadStatuses { (list, error) -> () in
+            // 接收刷新
+            self.refreshControl?.endRefreshing()
+            
             if error != nil
             {
                 return
             }
-            self.models = list
+            // 下拉刷新
+            if since_id > 0
+            {
+                // 如果是下拉刷新, 就将获取到的数据, 拼接在原有数据的前面
+                self.models = list! + self.models!
+            }else
+            {
+                self.models = list!
+            }
+
         }
     }
     
@@ -99,12 +124,6 @@ class HomeTableViewController: BaseViewController {
         presentViewController(vc, animated: true, completion: nil)
         
     }
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-
     
     //MARK: - Lazy
     private lazy var poperAnimator:PoperAnimator = {
@@ -120,6 +139,8 @@ class HomeTableViewController: BaseViewController {
     func change(){
         btn.selected = !btn.selected
     }
+    
+    
 }
 
 extension HomeTableViewController
