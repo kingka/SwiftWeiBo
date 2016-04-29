@@ -97,13 +97,18 @@ class Statuses: NSObject {
         }
     }
     
-    class func loadStatuses(since_id:Int , finished:(list:[Statuses]?,error:NSError?)->()){
+    class func loadStatuses(since_id:Int , max_id : Int ,finished:(list:[Statuses]?,error:NSError?)->()){
         let url = "2/statuses/home_timeline.json"
         var param = ["access_token":UserAccount.loadAccount()!.access_token!]
         // 下拉刷新
         if since_id > 0
         {
             param["since_id"] = "\(since_id)"
+        }
+        
+        if  max_id > 0
+        {
+            param["max_id"] = "\(max_id - 1)"
         }
 
         NetworkTools.shareNetworkTools().GET(url, parameters: param, progress: nil, success: { (_, Json) -> Void in

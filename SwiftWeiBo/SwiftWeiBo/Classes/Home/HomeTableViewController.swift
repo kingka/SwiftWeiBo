@@ -13,6 +13,7 @@ class HomeTableViewController: BaseViewController {
 
     //设置 中间的 view
     let btn = TitleView()
+    var pullupRefreshFlag = false
     var models : [Statuses]?{
         didSet{
             tableView.reloadData()
@@ -84,10 +85,17 @@ class HomeTableViewController: BaseViewController {
     
     func loadData(){
         
-        let since_id = models?.first?.id ?? 0
+        //默认当作是下拉来处理，因为since_id 和 max_id ， 必须有一个为0
+        var since_id = models?.first?.id ?? 0
+        var max_id = 0
         
+        if pullupRefreshFlag{
+            max_id = models?.last?.id ?? 0
+            since_id = 0
+            pullupRefreshFlag = false
+        }
         //2 load statues
-        Statuses.loadStatuses (since_id){ (list, error) -> () in
+        Statuses.loadStatuses (since_id,max_id: max_id){ (list, error) -> () in
             // 接收刷新
             self.refreshControl?.endRefreshing()
             
@@ -101,7 +109,10 @@ class HomeTableViewController: BaseViewController {
                 
                 self.models = list! + self.models!
                 self.showNewStatusLabel(list?.count ?? 0)
-            }else
+            }else if max_id > 0{
+                self.models =  self.models! + list!
+            }
+            else
             {
                 self.models = list!
             }
@@ -204,6 +215,14 @@ extension HomeTableViewController
         let cell = tableView.dequeueReusableCellWithIdentifier(statusType.cellID(status), forIndexPath: indexPath) as! StatusesCell
         
         cell.statuses = status
+        
+        let count = models?.count ?? 0
+        if indexPath.row == count - 1{
+            print("上啦加载")
+            pullupRefreshFlag = true
+            loadData()
+        }
+        
         return cell
     }
     
