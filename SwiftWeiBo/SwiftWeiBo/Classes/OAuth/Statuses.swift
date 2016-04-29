@@ -97,9 +97,15 @@ class Statuses: NSObject {
         }
     }
     
-    class func loadStatuses(finished:(list:[Statuses]?,error:NSError?)->()){
+    class func loadStatuses(since_id:Int , finished:(list:[Statuses]?,error:NSError?)->()){
         let url = "2/statuses/home_timeline.json"
-        let param = ["access_token":UserAccount.loadAccount()!.access_token!]
+        var param = ["access_token":UserAccount.loadAccount()!.access_token!]
+        // 下拉刷新
+        if since_id > 0
+        {
+            param["since_id"] = "\(since_id)"
+        }
+
         NetworkTools.shareNetworkTools().GET(url, parameters: param, progress: nil, success: { (_, Json) -> Void in
                 //1 json to model , 然后装在集合
             //print("json= \(Json)")

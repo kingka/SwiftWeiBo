@@ -51,21 +51,43 @@ class HomeTableViewController: BaseViewController {
         //tableView.rowHeight = UITableViewAutomaticDimension
         
         tableView.separatorStyle = UITableViewCellSeparatorStyle.None
-        //加载数据
-        loadData()
         
         refreshControl = HomeRefreshControl()
         refreshControl?.addTarget(self, action: "loadData", forControlEvents: UIControlEvents.ValueChanged)
+        
+        newStatusLabel.hidden = true
+        
+        //加载数据
+        loadData()
+        
+
     }
     
+    func showNewStatusLabel(count : Int){
+        
+        newStatusLabel.hidden = false
+        newStatusLabel.text = (count == 0) ? "没有刷新到新的微博数据" : "刷新到\(count)条微博数据"
+        
+        UIView.animateWithDuration(2, animations: { () -> Void in
+            
+            self.newStatusLabel.transform = CGAffineTransformMakeTranslation(0, self.newStatusLabel.frame.height)
+            
+            }) { (_) -> Void in
+                UIView.animateWithDuration(2, animations: { () -> Void in
+                    self.newStatusLabel.transform = CGAffineTransformIdentity
+                    }, completion: { (_) -> Void in
+                        self.newStatusLabel.hidden = true
+                })
+        }
 
+    }
     
     func loadData(){
         
         let since_id = models?.first?.id ?? 0
         
         //2 load statues
-        Statuses.loadStatuses { (list, error) -> () in
+        Statuses.loadStatuses (since_id){ (list, error) -> () in
             // 接收刷新
             self.refreshControl?.endRefreshing()
             
@@ -76,8 +98,9 @@ class HomeTableViewController: BaseViewController {
             // 下拉刷新
             if since_id > 0
             {
-                // 如果是下拉刷新, 就将获取到的数据, 拼接在原有数据的前面
+                
                 self.models = list! + self.models!
+                self.showNewStatusLabel(list?.count ?? 0)
             }else
             {
                 self.models = list!
@@ -131,6 +154,24 @@ class HomeTableViewController: BaseViewController {
         p.presentFrame = CGRect(x: 100, y: 56, width: 200, height: 350)
         return p
     }()
+    /// 刷新提醒控件
+    private lazy var newStatusLabel: UILabel =
+    {
+        let label = UILabel()
+        let height: CGFloat = 44
+        label.frame =  CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: height)
+        
+        label.backgroundColor = UIColor.orangeColor()
+        label.textColor = UIColor.whiteColor()
+        label.textAlignment = NSTextAlignment.Center
+        
+        // 加载 navBar 上面，不会随着 tableView 一起滚动
+        self.navigationController?.navigationBar.insertSubview(label, atIndex: 0)
+        
+        label.hidden = true
+        return label
+    }()
+
     
     //MARK: - 通知事件
     /**
