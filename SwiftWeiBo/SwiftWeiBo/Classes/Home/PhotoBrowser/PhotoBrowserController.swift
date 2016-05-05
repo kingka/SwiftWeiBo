@@ -8,6 +8,7 @@
 
 import UIKit
 
+let PhotoBrowserControllerIdentifer = "PhotoBrowserControllerIdentifer"
 class PhotoBrowserController: UIViewController {
     
     var index : Int?
@@ -25,7 +26,9 @@ class PhotoBrowserController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        // Do any additional setup after loading the view.
+        collectionV.dataSource = self
+        closeBtn.addTarget(self, action: "dismissController", forControlEvents: UIControlEvents.TouchUpInside)
+        collectionV.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: PhotoBrowserControllerIdentifer)
     }
 
     func setupUI(){
@@ -50,8 +53,7 @@ class PhotoBrowserController: UIViewController {
             make.width.equalTo(100)
             make.height.equalTo(30)
         }
-        
-        closeBtn.addTarget(self, action: "dismissController", forControlEvents: UIControlEvents.TouchUpInside)
+
     }
     
     func dismissController(){
@@ -61,14 +63,14 @@ class PhotoBrowserController: UIViewController {
     private var closeBtn : UIButton = {
         let btn = UIButton()
         btn.setTitle("关闭", forState: UIControlState.Normal)
-        btn.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+        btn.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
         return btn
     }()
     
     private var saveBtn : UIButton = {
         let btn = UIButton()
         btn.setTitle("保存", forState: UIControlState.Normal)
-        btn.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+        btn.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
         return btn
     }()
     
@@ -85,4 +87,18 @@ class PhotoBrowserController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+}
+
+extension PhotoBrowserController : UICollectionViewDataSource
+{
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        print("urls.count = \(urls?.count)")
+        return urls?.count ?? 0
+    }
+    
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(PhotoBrowserControllerIdentifer, forIndexPath: indexPath)
+        cell.backgroundColor = UIColor.greenColor()
+        return cell
+    }
 }
