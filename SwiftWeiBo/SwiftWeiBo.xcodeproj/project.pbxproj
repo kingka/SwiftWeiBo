@@ -19,6 +19,7 @@
 		F91E01FC1C43EACD00DA3CEB /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91E01FB1C43EACD00DA3CEB /* ProfileTableViewController.swift */; };
 		F91E02001C43F38500DA3CEB /* MainVCSettings.json in Resources */ = {isa = PBXBuildFile; fileRef = F91E01FE1C43F38500DA3CEB /* MainVCSettings.json */; };
 		F91E02011C43F38500DA3CEB /* NullViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91E01FF1C43F38500DA3CEB /* NullViewController.swift */; };
+		F92258A21CDB3CBD00A49242 /* PhotoBrowserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92258A11CDB3CBD00A49242 /* PhotoBrowserController.swift */; };
 		F93370DA1C7ED994002CD754 /* PoperAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93370D91C7ED994002CD754 /* PoperAnimator.swift */; };
 		F93370DD1C7EE44F002CD754 /* QRCodeController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F93370DC1C7EE44F002CD754 /* QRCodeController.storyboard */; };
 		F93370DF1C8023EE002CD754 /* QRCodeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93370DE1C8023EE002CD754 /* QRCodeController.swift */; };
@@ -87,6 +88,7 @@
 		F91E01FB1C43EACD00DA3CEB /* ProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
 		F91E01FE1C43F38500DA3CEB /* MainVCSettings.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MainVCSettings.json; sourceTree = "<group>"; };
 		F91E01FF1C43F38500DA3CEB /* NullViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NullViewController.swift; sourceTree = "<group>"; };
+		F92258A11CDB3CBD00A49242 /* PhotoBrowserController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoBrowserController.swift; sourceTree = "<group>"; };
 		F93370D91C7ED994002CD754 /* PoperAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PoperAnimator.swift; sourceTree = "<group>"; };
 		F93370DC1C7EE44F002CD754 /* QRCodeController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = QRCodeController.storyboard; sourceTree = "<group>"; };
 		F93370DE1C8023EE002CD754 /* QRCodeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeController.swift; sourceTree = "<group>"; };
@@ -252,6 +254,7 @@
 		F91E01EE1C43E9CB00DA3CEB /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				F92258A01CDB3C9200A49242 /* PhotoBrowser */,
 				F93370DB1C7EE439002CD754 /* QRCode */,
 				F9E7F00E1C706443005D5705 /* PopoverController */,
 				F91E01FD1C43F38500DA3CEB /* Resource */,
@@ -312,6 +315,14 @@
 				F91E01FF1C43F38500DA3CEB /* NullViewController.swift */,
 			);
 			path = Resource;
+			sourceTree = "<group>";
+		};
+		F92258A01CDB3C9200A49242 /* PhotoBrowser */ = {
+			isa = PBXGroup;
+			children = (
+				F92258A11CDB3CBD00A49242 /* PhotoBrowserController.swift */,
+			);
+			path = PhotoBrowser;
 			sourceTree = "<group>";
 		};
 		F93370DB1C7EE439002CD754 /* QRCode */ = {
@@ -542,6 +553,7 @@
 				F935B22D1CA0F3010010DF54 /* NetworkTools.swift in Sources */,
 				F989122D1CCE190300752F82 /* statusTopView.swift in Sources */,
 				F935B2311CA298BF0010DF54 /* UserAccount.swift in Sources */,
+				F92258A21CDB3CBD00A49242 /* PhotoBrowserController.swift in Sources */,
 				F9F14C281CD0962500DB2CE0 /* StatusesForwordCell.swift in Sources */,
 				F91E01F61C43EA9000DA3CEB /* HomeTableViewController.swift in Sources */,
 				F989122B1CCE17F000752F82 /* statusBottomView.swift in Sources */,

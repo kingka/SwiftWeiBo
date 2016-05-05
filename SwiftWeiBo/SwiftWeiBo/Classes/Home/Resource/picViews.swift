@@ -10,6 +10,9 @@ import UIKit
 import SDWebImage
 
 let collectionCellIdentifer = "cellIdentifer"
+let KKPopPhotoBrowser = "KKPopPhotoBrowser"
+let KKPhotoBrowserIndexKey = "KKPhotoBrowserIndexKey"
+let KKPhotoBrowserURLKey = "KKPhotoBrowserURLKey"
 
 class picViews: UICollectionView {
 
@@ -81,13 +84,14 @@ class picViews: UICollectionView {
     func setup(){
         registerClass(collectionCell.self, forCellWithReuseIdentifier: collectionCellIdentifer)
         dataSource = self
+        delegate = self
         picLayout.minimumInteritemSpacing = 10
         picLayout.minimumLineSpacing = 10
         backgroundColor = UIColor.clearColor()//UIColor(white: 0.8, alpha: 0.7)
     }
 }
 
-extension picViews : UICollectionViewDataSource
+extension picViews : UICollectionViewDataSource,UICollectionViewDelegate
 {
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(collectionCellIdentifer, forIndexPath: indexPath) as! collectionCell
@@ -101,6 +105,11 @@ extension picViews : UICollectionViewDataSource
         return statuses?.picURLS?.count ?? 0
     }
     
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        //print(indexPath.item)
+        let info = [KKPhotoBrowserIndexKey : indexPath,KKPhotoBrowserURLKey :statuses!.largePicURLS!]
+        NSNotificationCenter.defaultCenter().postNotificationName(KKPopPhotoBrowser, object: self, userInfo: info)
+    }
     ///MARK: - 内部类
     class collectionCell : UICollectionViewCell
     {

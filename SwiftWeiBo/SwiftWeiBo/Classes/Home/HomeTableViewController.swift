@@ -42,7 +42,7 @@ class HomeTableViewController: BaseViewController {
         //监听
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "change", name: PopoverAnimatorWillShow, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "change", name: PopoverAnimatorWilldismiss, object: nil)
-        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "popPhotoBrowser:", name: KKPopPhotoBrowser, object: nil)
         // 注册2个cell
         tableView.registerClass(StatusesNormalCell.self, forCellReuseIdentifier: statusType.normalCell.rawValue)
         tableView.registerClass(StatusesForwordCell.self, forCellReuseIdentifier: statusType.forwordCell.rawValue)
@@ -62,6 +62,26 @@ class HomeTableViewController: BaseViewController {
         loadData()
         
 
+    }
+    
+    func popPhotoBrowser(userinfo : NSNotification)
+    {
+        guard  let indexPath = userinfo.userInfo![KKPhotoBrowserIndexKey] as? NSIndexPath else{
+        
+            print("no indexPath")
+            return
+        }
+        guard  let urls = userinfo.userInfo![KKPhotoBrowserURLKey] as? [NSURL] else{
+            
+            print("no urls")
+            return
+        }
+        
+        let photoBrowser = PhotoBrowserController(index: indexPath.item, urls: urls)
+        
+        presentViewController(photoBrowser, animated: true) { () -> Void in
+            
+        }
     }
     
     func showNewStatusLabel(count : Int){
@@ -159,6 +179,11 @@ class HomeTableViewController: BaseViewController {
         
     }
     
+    deinit
+    {
+        // 移除通知
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
     //MARK: - Lazy
     private lazy var poperAnimator:PoperAnimator = {
         let p = PoperAnimator()

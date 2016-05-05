@@ -44,22 +44,30 @@ class Statuses: NSObject {
     var pic_urls : [[String : AnyObject]]?{
         didSet{
             picURLS = [NSURL]()
+            largePicURLS = [NSURL]()
             for dict in pic_urls!{
                 if let urlStr = dict["thumbnail_pic"]
                 {
                     // 将字符串转换为URL保存到数组中
                     picURLS?.append(NSURL(string: urlStr as! String)!)
+                    // 2.处理大图
+                    let largeURLStr = urlStr.stringByReplacingOccurrencesOfString("thumbnail", withString: "large")
+                    largePicURLS!.append(NSURL(string: largeURLStr)!)
                 }
             }
         }
     }
     var picURLS : [NSURL]?
+    var largePicURLS : [NSURL]?
     var user : User?
     ///转发微博
     var retweeted_status : Statuses?
     //如果没有转发，保存的是原创配图URL，反之保存转发配图URL
     var retweetedPicURLS : [NSURL]?{
         return retweeted_status != nil ? retweeted_status?.picURLS : picURLS
+    }
+    var retweetedLargePicURLS : [NSURL]?{
+        return retweeted_status != nil ? retweeted_status?.largePicURLS : largePicURLS
     }
     
     class func dict2model(list:[[String : AnyObject]])->[Statuses]{
