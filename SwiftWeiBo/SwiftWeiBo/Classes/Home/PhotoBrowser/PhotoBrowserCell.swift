@@ -11,11 +11,24 @@ import UIKit
 class PhotoBrowserCell: UICollectionViewCell {
     
     var imageURL : NSURL?{
+        
         didSet{
+            reset()
             imageV.sd_setImageWithURL(imageURL!) { (image, _, _, _) -> Void in
                 self.setupImagePosition(image)
             }
         }
+    }
+    
+    //因为重用cell 的问题，如果不reset scroller 和 imageView , 会出现被重用的cell的大小，位置等方面不正确
+    func reset(){
+        scroller.contentInset = UIEdgeInsetsZero
+        scroller.contentOffset = CGPointZero
+        scroller.contentSize = CGSizeZero
+        
+        //取消形变
+        imageV.transform = CGAffineTransformIdentity
+    
     }
     
     func setupImagePosition(image : UIImage){
@@ -38,6 +51,10 @@ class PhotoBrowserCell: UICollectionViewCell {
         contentView.addSubview(scroller)
         scroller.addSubview(imageV)
         scroller.frame = UIScreen.mainScreen().bounds
+        scroller.delegate = self
+        
+        scroller.maximumZoomScale = 2.0
+        scroller.minimumZoomScale = 0.5
     }
     
     private func displaySize(image: UIImage) -> CGSize
@@ -63,4 +80,27 @@ class PhotoBrowserCell: UICollectionViewCell {
     //MARK:- lazy
     lazy var imageV : UIImageView = UIImageView()
     lazy var scroller : UIScrollView = UIScrollView()
+}
+
+extension PhotoBrowserCell : UIScrollViewDelegate
+{
+    //告诉代理，缩放的是哪个view
+    func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
+        return imageV
+    }
+    
+    //缩放结束后调整位置
+    func scrollViewDidEndZooming(scrollView: UIScrollView, withView view: UIView?, atScale scale: CGFloat) {
+        
+        //这里view!.frame.width 之所以不用bounds, 是因为变形后，bounds 也是不变的
+        var x = (UIScreen.mainScreen().bounds.width - view!.frame.width)*0.5
+        var y = (UIScreen.mainScreen().bounds.height - view!.frame.height)*0.5
+        
+        //当放大到一定程度，x, y 会变成负数
+        x = x < 0 ? 0 : x
+        y = y < 0 ? 0 : y
+        
+        scroller.contentInset = UIEdgeInsets(top: y, left: x, bottom: y, right: x)
+        
+    }
 }
