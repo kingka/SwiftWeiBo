@@ -8,8 +8,14 @@
 
 import UIKit
 
+protocol PhotoBrowserCellDelegate : NSObjectProtocol
+{
+    func photoBrowserClose(cell : PhotoBrowserCell)
+}
+
 class PhotoBrowserCell: UICollectionViewCell {
     
+    var photoBrowserCellDelegate : PhotoBrowserCellDelegate?
     var imageURL : NSURL?{
         
         didSet{
@@ -59,6 +65,11 @@ class PhotoBrowserCell: UICollectionViewCell {
         scroller.addSubview(imageV)
         contentView.addSubview(activity)
         
+        //点击图片关闭手势
+        let tap = UITapGestureRecognizer(target: self, action: "close")
+        imageV.addGestureRecognizer(tap)
+        imageV.userInteractionEnabled = true
+        
         scroller.frame = UIScreen.mainScreen().bounds
         scroller.delegate = self
         
@@ -66,6 +77,14 @@ class PhotoBrowserCell: UICollectionViewCell {
         
         scroller.maximumZoomScale = 2.0
         scroller.minimumZoomScale = 0.5
+    }
+    
+    func close(){
+        if ((photoBrowserCellDelegate?.respondsToSelector("photoBrowserClose:")) != nil)
+        {
+            photoBrowserCellDelegate?.photoBrowserClose(self)
+        }
+        
     }
     
     private func displaySize(image: UIImage) -> CGSize

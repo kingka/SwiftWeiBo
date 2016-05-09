@@ -96,7 +96,7 @@ class PhotoBrowserController: UIViewController {
     
 }
 
-extension PhotoBrowserController : UICollectionViewDataSource
+extension PhotoBrowserController : UICollectionViewDataSource,PhotoBrowserCellDelegate
 {
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         print("urls.count = \(urls?.count)")
@@ -105,9 +105,14 @@ extension PhotoBrowserController : UICollectionViewDataSource
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(PhotoBrowserControllerIdentifer, forIndexPath: indexPath) as! PhotoBrowserCell
+        cell.photoBrowserCellDelegate = self
         cell.imageURL = urls![indexPath.item]
         cell.backgroundColor = UIColor.blackColor()
         return cell
+    }
+    
+    func photoBrowserClose(cell: PhotoBrowserCell) {
+        dismissViewControllerAnimated(true, completion: nil)
     }
 }
 
