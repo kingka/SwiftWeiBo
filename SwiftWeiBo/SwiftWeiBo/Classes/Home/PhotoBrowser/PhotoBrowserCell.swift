@@ -13,8 +13,15 @@ class PhotoBrowserCell: UICollectionViewCell {
     var imageURL : NSURL?{
         
         didSet{
+            //1 重置
             reset()
+            //2 start activity
+            activity.startAnimating()
+            //3 加载图片
             imageV.sd_setImageWithURL(imageURL!) { (image, _, _, _) -> Void in
+                //4 stop activity
+                self.activity.stopAnimating()
+                //5 调整图片位置
                 self.setupImagePosition(image)
             }
         }
@@ -50,8 +57,12 @@ class PhotoBrowserCell: UICollectionViewCell {
     func setupUI(){
         contentView.addSubview(scroller)
         scroller.addSubview(imageV)
+        contentView.addSubview(activity)
+        
         scroller.frame = UIScreen.mainScreen().bounds
         scroller.delegate = self
+        
+        activity.center = contentView.center
         
         scroller.maximumZoomScale = 2.0
         scroller.minimumZoomScale = 0.5
@@ -80,6 +91,7 @@ class PhotoBrowserCell: UICollectionViewCell {
     //MARK:- lazy
     lazy var imageV : UIImageView = UIImageView()
     lazy var scroller : UIScrollView = UIScrollView()
+    lazy var activity : UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.WhiteLarge)
 }
 
 extension PhotoBrowserCell : UIScrollViewDelegate

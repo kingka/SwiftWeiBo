@@ -68,14 +68,16 @@ class PhotoBrowserController: UIViewController {
     private var closeBtn : UIButton = {
         let btn = UIButton()
         btn.setTitle("关闭", forState: UIControlState.Normal)
-        btn.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
+        btn.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+        btn.backgroundColor = UIColor(white: 0.8, alpha: 0.6)
         return btn
     }()
     
     private var saveBtn : UIButton = {
         let btn = UIButton()
         btn.setTitle("保存", forState: UIControlState.Normal)
-        btn.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
+        btn.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+        btn.backgroundColor = UIColor(white: 0.8, alpha: 0.6)
         return btn
     }()
     
