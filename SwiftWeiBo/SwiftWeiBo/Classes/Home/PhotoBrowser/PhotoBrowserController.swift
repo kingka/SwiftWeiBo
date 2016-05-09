@@ -26,19 +26,24 @@ class PhotoBrowserController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        
         collectionV.dataSource = self
         closeBtn.addTarget(self, action: "dismissController", forControlEvents: UIControlEvents.TouchUpInside)
-        collectionV.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: PhotoBrowserControllerIdentifer)
+        collectionV.registerClass(PhotoBrowserCell.self, forCellWithReuseIdentifier: PhotoBrowserControllerIdentifer)
     }
 
     func setupUI(){
         
-        view.backgroundColor = UIColor.whiteColor()
+        view.backgroundColor = UIColor.blackColor()
         
         view.addSubview(collectionV)
         collectionV.addSubview(iconView)
         view.addSubview(closeBtn)
         view.addSubview(saveBtn)
+        
+        collectionV.snp_makeConstraints { (make) -> Void in
+            make.edges.equalTo(view)
+        }
         
         closeBtn.snp_makeConstraints { (make) -> Void in
             make.left.equalTo(view).offset(10)
@@ -76,7 +81,7 @@ class PhotoBrowserController: UIViewController {
     
     private var iconView : UIImageView = UIImageView()
     
-    private var collectionV : UICollectionView = UICollectionView(frame: CGRectZero, collectionViewLayout: UICollectionViewFlowLayout())
+    private var collectionV : UICollectionView = UICollectionView(frame: CGRectZero, collectionViewLayout: PhotoBrowserLayout())
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -97,8 +102,23 @@ extension PhotoBrowserController : UICollectionViewDataSource
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(PhotoBrowserControllerIdentifer, forIndexPath: indexPath)
-        cell.backgroundColor = UIColor.greenColor()
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(PhotoBrowserControllerIdentifer, forIndexPath: indexPath) as! PhotoBrowserCell
+        cell.imageURL = urls![indexPath.item]
+        cell.backgroundColor = UIColor.randomColor()
         return cell
+    }
+}
+
+class PhotoBrowserLayout : UICollectionViewFlowLayout {
+    
+    override func prepareLayout() {
+        itemSize = UIScreen.mainScreen().bounds.size
+        minimumInteritemSpacing = 0
+        minimumLineSpacing = 0
+        scrollDirection = UICollectionViewScrollDirection.Horizontal
+        
+        collectionView?.showsHorizontalScrollIndicator = false
+        collectionView?.pagingEnabled = true
+        collectionView?.bounces =  false
     }
 }
