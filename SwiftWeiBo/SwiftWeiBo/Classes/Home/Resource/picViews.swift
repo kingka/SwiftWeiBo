@@ -118,14 +118,28 @@ extension picViews : UICollectionViewDataSource,UICollectionViewDelegate
             {
             didSet{
                 imageView.sd_setImageWithURL(imageURL!)
+                if (imageURL!.absoluteString as NSString).pathExtension.lowercaseString == "gif"
+                {
+                    gifImageView.hidden = false
+                }else{
+                    gifImageView.hidden = true
+                }
+
             }
         }
         
         func setupUI(){
-            
             contentView.addSubview(imageView)
+            imageView.addSubview(gifImageView)
+            
             imageView.snp_makeConstraints { (make) -> Void in
                 make.edges.equalTo(contentView)
+            }
+            gifImageView.snp_makeConstraints { (make) -> Void in
+                make.right.equalTo(imageView)
+                make.bottom.equalTo(imageView)
+                make.width.equalTo(20)
+                make.height.equalTo(20)
             }
         }
         
@@ -139,6 +153,11 @@ extension picViews : UICollectionViewDataSource,UICollectionViewDelegate
         }
         
         lazy var imageView : UIImageView = UIImageView()
+        lazy var gifImageView : UIImageView = {
+            let iv = UIImageView(image: UIImage(named: "tabbar_compose_shooting"))
+            iv.hidden = true
+            return iv
+        }()
     }
 
     

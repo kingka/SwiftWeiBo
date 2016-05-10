@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 let PhotoBrowserControllerIdentifer = "PhotoBrowserControllerIdentifer"
 class PhotoBrowserController: UIViewController {
@@ -29,6 +30,7 @@ class PhotoBrowserController: UIViewController {
         
         collectionV.dataSource = self
         closeBtn.addTarget(self, action: "dismissController", forControlEvents: UIControlEvents.TouchUpInside)
+        saveBtn.addTarget(self, action: "save", forControlEvents: UIControlEvents.TouchUpInside)
         collectionV.registerClass(PhotoBrowserCell.self, forCellWithReuseIdentifier: PhotoBrowserControllerIdentifer)
     }
 
@@ -63,6 +65,22 @@ class PhotoBrowserController: UIViewController {
     
     func dismissController(){
         dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func save(){
+        let index = collectionV.indexPathsForVisibleItems().last
+        let cell = collectionV.cellForItemAtIndexPath(index!) as! PhotoBrowserCell
+        let image = cell.imageV.image
+        UIImageWriteToSavedPhotosAlbum(image!, self, "image:didFinishSavingWithError:contextInfo:", nil)
+        //// - (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo;
+    }
+    
+    func image(image:UIImage, didFinishSavingWithError error:NSError?, contextInfo:AnyObject){
+        if error != nil{
+            SVProgressHUD.showErrorWithStatus("保存失败")
+        }else{
+            SVProgressHUD.showSuccessWithStatus("保存成功")
+        }
     }
     //MARK:- LAZY loading
     private var closeBtn : UIButton = {
@@ -106,7 +124,7 @@ extension PhotoBrowserController : UICollectionViewDataSource,PhotoBrowserCellDe
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(PhotoBrowserControllerIdentifer, forIndexPath: indexPath) as! PhotoBrowserCell
         cell.photoBrowserCellDelegate = self
-        cell.imageURL = urls![indexPath.item]
+        cell.imageURL = urls![self.index!]
         cell.backgroundColor = UIColor.blackColor()
         return cell
     }
@@ -114,6 +132,7 @@ extension PhotoBrowserController : UICollectionViewDataSource,PhotoBrowserCellDe
     func photoBrowserClose(cell: PhotoBrowserCell) {
         dismissViewControllerAnimated(true, completion: nil)
     }
+    
 }
 
 class PhotoBrowserLayout : UICollectionViewFlowLayout {
