@@ -23,6 +23,13 @@ class PhotoBrowserController: UIViewController {
     }
 
    
+    override func viewDidLayoutSubviews()
+    {
+        super.viewDidLayoutSubviews()
+        let indexpath = NSIndexPath(forRow:index!, inSection: 0)
+        collectionV.scrollToItemAtIndexPath(indexpath, atScrollPosition: UICollectionViewScrollPosition.CenteredHorizontally, animated: false)
+    }
+  
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +39,7 @@ class PhotoBrowserController: UIViewController {
         closeBtn.addTarget(self, action: "dismissController", forControlEvents: UIControlEvents.TouchUpInside)
         saveBtn.addTarget(self, action: "save", forControlEvents: UIControlEvents.TouchUpInside)
         collectionV.registerClass(PhotoBrowserCell.self, forCellWithReuseIdentifier: PhotoBrowserControllerIdentifer)
+        
     }
 
     func setupUI(){
@@ -124,7 +132,7 @@ extension PhotoBrowserController : UICollectionViewDataSource,PhotoBrowserCellDe
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(PhotoBrowserControllerIdentifer, forIndexPath: indexPath) as! PhotoBrowserCell
         cell.photoBrowserCellDelegate = self
-        cell.imageURL = urls![self.index!]
+        cell.imageURL = urls![indexPath.row]
         cell.backgroundColor = UIColor.blackColor()
         return cell
     }
@@ -146,5 +154,7 @@ class PhotoBrowserLayout : UICollectionViewFlowLayout {
         collectionView?.showsHorizontalScrollIndicator = false
         collectionView?.pagingEnabled = true
         collectionView?.bounces =  false
+        
+        
     }
 }
