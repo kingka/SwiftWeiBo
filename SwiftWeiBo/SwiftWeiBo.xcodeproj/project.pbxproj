@@ -22,6 +22,7 @@
 		F92258A21CDB3CBD00A49242 /* PhotoBrowserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92258A11CDB3CBD00A49242 /* PhotoBrowserController.swift */; };
 		F92258A41CE0358E00A49242 /* UIColor+Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92258A31CE0358E00A49242 /* UIColor+Category.swift */; };
 		F92258A61CE0373600A49242 /* PhotoBrowserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92258A51CE0373600A49242 /* PhotoBrowserCell.swift */; };
+		F92258A91CE4743D00A49242 /* ComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92258A81CE4743C00A49242 /* ComposeViewController.swift */; };
 		F93370DA1C7ED994002CD754 /* PoperAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93370D91C7ED994002CD754 /* PoperAnimator.swift */; };
 		F93370DD1C7EE44F002CD754 /* QRCodeController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F93370DC1C7EE44F002CD754 /* QRCodeController.storyboard */; };
 		F93370DF1C8023EE002CD754 /* QRCodeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93370DE1C8023EE002CD754 /* QRCodeController.swift */; };
@@ -93,6 +94,7 @@
 		F92258A11CDB3CBD00A49242 /* PhotoBrowserController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoBrowserController.swift; sourceTree = "<group>"; };
 		F92258A31CE0358E00A49242 /* UIColor+Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIColor+Category.swift"; path = "SwiftWeiBo/Classes/Home/UIColor+Category.swift"; sourceTree = SOURCE_ROOT; };
 		F92258A51CE0373600A49242 /* PhotoBrowserCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoBrowserCell.swift; sourceTree = "<group>"; };
+		F92258A81CE4743C00A49242 /* ComposeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposeViewController.swift; sourceTree = "<group>"; };
 		F93370D91C7ED994002CD754 /* PoperAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PoperAnimator.swift; sourceTree = "<group>"; };
 		F93370DC1C7EE44F002CD754 /* QRCodeController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = QRCodeController.storyboard; sourceTree = "<group>"; };
 		F93370DE1C8023EE002CD754 /* QRCodeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeController.swift; sourceTree = "<group>"; };
@@ -222,6 +224,7 @@
 		F91E01EB1C43E9CB00DA3CEB /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				F92258A71CE4740E00A49242 /* Compose */,
 				F98911A41CB398F000752F82 /* Newfeature */,
 				F935B20E1C97FA0E0010DF54 /* OAuth */,
 				F91E01EC1C43E9CB00DA3CEB /* Comman */,
@@ -329,6 +332,14 @@
 				F92258A51CE0373600A49242 /* PhotoBrowserCell.swift */,
 			);
 			path = PhotoBrowser;
+			sourceTree = "<group>";
+		};
+		F92258A71CE4740E00A49242 /* Compose */ = {
+			isa = PBXGroup;
+			children = (
+				F92258A81CE4743C00A49242 /* ComposeViewController.swift */,
+			);
+			path = Compose;
 			sourceTree = "<group>";
 		};
 		F93370DB1C7EE439002CD754 /* QRCode */ = {
@@ -589,6 +600,7 @@
 				F9878BDC1CACD52200858258 /* String+Category.swift in Sources */,
 				F93370FE1C896151002CD754 /* MyQRCodeCard.swift in Sources */,
 				F91E02011C43F38500DA3CEB /* NullViewController.swift in Sources */,
+				F92258A91CE4743D00A49242 /* ComposeViewController.swift in Sources */,
 				F98911EF1CC4806800752F82 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

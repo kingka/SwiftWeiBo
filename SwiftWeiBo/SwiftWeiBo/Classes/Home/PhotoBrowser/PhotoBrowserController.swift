@@ -22,7 +22,7 @@ class PhotoBrowserController: UIViewController {
         super.init(nibName: nil, bundle: nil)
     }
 
-   
+   //滚动到指定的cell
     override func viewDidLayoutSubviews()
     {
         super.viewDidLayoutSubviews()

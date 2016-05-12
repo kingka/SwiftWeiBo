@@ -64,7 +64,11 @@ class MainViewController: UITabBarController {
     
     func composeBtnClick(){
         print(__FUNCTION__)
+        let composeVC = ComposeViewController()
+        let nav = UINavigationController(rootViewController: composeVC)
+        presentViewController(nav, animated: true, completion: nil)
     }
+    
     
     func setupComposeBtn(){
         //添加到tabbar
