@@ -17,6 +17,8 @@ extension UIButton{
         btn.setImage(UIImage(named: imageName), forState: UIControlState.Normal)
         btn.setTitleColor(UIColor.darkGrayColor(), forState: UIControlState.Normal)
         btn.setBackgroundImage(UIImage(named: "timeline_card_bottom_background"), forState: UIControlState.Normal)
+        
         return btn
     }
+    
 }

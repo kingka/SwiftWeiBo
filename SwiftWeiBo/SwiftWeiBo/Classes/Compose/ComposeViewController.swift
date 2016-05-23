@@ -11,8 +11,10 @@ import SVProgressHUD
 
 class ComposeViewController: UIViewController {
     
+    var toolBarBottomCons : NSLayoutConstraint?
+    
     override func viewWillAppear(animated: Bool) {
-        textView.becomeFirstResponder()
+        //textView.becomeFirstResponder()
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -26,6 +28,7 @@ class ComposeViewController: UIViewController {
         view.backgroundColor = UIColor.whiteColor()
         setupNav()
         setupTextView()
+        setupToolBar()
     }
     
     func setupTextView(){
@@ -46,6 +49,19 @@ class ComposeViewController: UIViewController {
             make.top.equalTo(textView).offset(8)
             make.height.equalTo(18)
         }
+    }
+    
+    func setupToolBar(){
+        view.addSubview(toolBar)
+        //autoLayout
+        toolBar.snp_makeConstraints { (make) -> Void in
+            make.left.equalTo(view)
+            make.right.equalTo(view)
+            make.height.equalTo(44)
+        }
+        toolBar.translatesAutoresizingMaskIntoConstraints = false
+        self.toolBarBottomCons = NSLayoutConstraint(item: toolBar, attribute: NSLayoutAttribute.Bottom, relatedBy: NSLayoutRelation.Equal, toItem: view, attribute: NSLayoutAttribute.Bottom, multiplier: 1, constant: 0)
+        view.addConstraint(toolBarBottomCons!)
     }
     
     func setupNav(){
@@ -95,7 +111,38 @@ class ComposeViewController: UIViewController {
         }
     }
     
+    func selectPicture(){
+        print(__FUNCTION__)
+    }
+    
+    func inputEmoticon(){
+        print(__FUNCTION__)
+    }
+    
     //MARK: -LAZY LOADING
+    private lazy var toolBar : UIToolbar = {
+        let toolBar = UIToolbar()
+        var items = [UIBarButtonItem]()
+        let itemSettings = [["imageName": "compose_toolbar_picture", "action": "selectPicture"],
+            
+            ["imageName": "compose_mentionbutton_background"],
+            
+            ["imageName": "compose_trendbutton_background"],
+            
+            ["imageName": "compose_emoticonbutton_background", "action": "inputEmoticon"],
+            
+            ["imageName": "compose_addbutton_background"]]
+        for dict in itemSettings
+        {
+           let item = UIBarButtonItem(imageName: dict["imageName"]!, target: self, action: dict["action"])
+            items.append(item)
+            items.append(UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil))
+        }
+        items.removeLast()
+        toolBar.items = items
+        return toolBar
+    }()
+    
     private lazy var titleLabel:UILabel = {
         let title = UILabel()
         title.text = "发微博"

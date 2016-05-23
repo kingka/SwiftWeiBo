@@ -451,7 +451,7 @@
 				TargetAttributes = {
 					F91E01B91C43E69000DA3CEB = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = P7TJS3BHV2;
+						DevelopmentTeam = UFJ2AA8623;
 					};
 					F91E01CD1C43E69100DA3CEB = {
 						CreatedOnToolsVersion = 7.2;
@@ -729,7 +729,7 @@
 				INFOPLIST_FILE = SwiftWeiBo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.imanol.SwiftWeiBo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.imanol.weibo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -746,7 +746,7 @@
 				INFOPLIST_FILE = SwiftWeiBo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.imanol.SwiftWeiBo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.imanol.weibo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
