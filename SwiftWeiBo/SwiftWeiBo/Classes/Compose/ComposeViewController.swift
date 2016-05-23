@@ -13,11 +13,13 @@ class ComposeViewController: UIViewController {
     
     var toolBarBottomCons : NSLayoutConstraint?
     
-    override func viewWillAppear(animated: Bool) {
-        //textView.becomeFirstResponder()
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        textView.becomeFirstResponder()
     }
     
     override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
         textView.resignFirstResponder()
     }
     
@@ -29,11 +31,59 @@ class ComposeViewController: UIViewController {
         setupNav()
         setupTextView()
         setupToolBar()
+        
+        //obser keyboard
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyBoardFrameChange:", name: UIKeyboardWillChangeFrameNotification, object: nil)
+        
+        //将表情键盘控制器添加为当前控制器的子控制器
+        addChildViewController(emoticonVC)
+        
+    }
+    
+    func keyBoardFrameChange(notify : NSNotification){
+        //print(notify)
+        //adjust toolBar layout
+        let keyboardEndFrame = notify.userInfo!["UIKeyboardFrameEndUserInfoKey"] as! NSValue
+        let frame = keyboardEndFrame.CGRectValue()
+        
+        toolBarBottomCons?.constant = -(UIScreen.mainScreen().bounds.height - frame.origin.y)
+        
+        // update UI
+        let duration = notify.userInfo![UIKeyboardAnimationDurationUserInfoKey] as! NSNumber
+        
+        /*
+        当点击emotion 表情切换键盘的时候，工具条回弹是因为执行了两次动画, 而系统自带的键盘的动画节奏(曲线) 7
+        7在apple API中并没有提供给我们, 但是我们可以使用
+        7这种节奏有一个特点: 如果连续执行两次动画, 不管上一次有没有执行完毕, 都会立刻执行下一次
+        也就是说上一次可能会被忽略
+        
+        如果将动画节奏设置为7, 那么动画的时长无论如何都会自动修改为0.5
+        
+        UIView动画的本质是核心动画, 所以可以给核心动画设置动画节奏
+        */
+        
+        //取出键盘动画节奏
+        let curve = notify.userInfo![UIKeyboardAnimationCurveUserInfoKey] as! NSNumber
+        UIView.animateWithDuration(duration.doubleValue) { () -> Void in
+            //设置动画节奏
+            UIView.setAnimationCurve(UIViewAnimationCurve(rawValue: curve.integerValue)!)
+            self.view.layoutIfNeeded()
+        }
+
+        //let anim = toolBar.layer.animationForKey("position")
+        //print("duration = \(anim?.duration)")
+
+    }
+    
+    deinit{
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
     func setupTextView(){
         view.addSubview(textView)
         textView.delegate = self
+        textView.alwaysBounceVertical = true
+        textView.keyboardDismissMode = UIScrollViewKeyboardDismissMode.OnDrag
         textView.snp_makeConstraints { (make) -> Void in
             make.left.equalTo(view)
             make.right.equalTo(view)
@@ -102,7 +152,7 @@ class ComposeViewController: UIViewController {
     
     func send(){
         let path = "2/statuses/update.json"
-        let params = ["access_token":UserAccount.loadAccount()?.access_token,"status":textView.text]
+        let params = ["access_token":UserAccount.loadAccount()!.access_token!,"status":textView.emoticonStr()]
         NetworkTools.shareNetworkTools().POST(path, parameters: params, success: { (_, json) -> Void in
                 SVProgressHUD.showSuccessWithStatus("发送成功")
                 self.cancel()
@@ -112,14 +162,33 @@ class ComposeViewController: UIViewController {
     }
     
     func selectPicture(){
-        print(__FUNCTION__)
+       // print(__FUNCTION__)
+   
     }
     
     func inputEmoticon(){
-        print(__FUNCTION__)
+        //print(__FUNCTION__)
+        // 结论: 如果是系统自带的键盘, 那么inputView = nil
+        //      如果不是系统自带的键盘, 那么inputView != nil
+        //        print(textView.inputView)
+        
+        //1 close keyboard
+        textView.resignFirstResponder()
+        //2 set new inputView
+        textView.inputView = (textView.inputView == nil) ? emoticonVC.view : nil
+        //4 show keyboard
+        textView.becomeFirstResponder()
     }
     
     //MARK: -LAZY LOADING
+    // weak 相当于OC中的 __weak , 特点对象释放之后会将变量设置为nil
+    // unowned 相当于OC中的 unsafe_unretained, 特点对象释放之后不会将变量设置为nil
+    lazy var emoticonVC : EmoticonViewController = EmoticonViewController { [weak self](emoticon) -> () in
+        
+        self!.textView.insertEmoticons(emoticon)
+        
+    }
+
     private lazy var toolBar : UIToolbar = {
         let toolBar = UIToolbar()
         var items = [UIBarButtonItem]()

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class MainViewController: UITabBarController {
 
@@ -64,9 +65,16 @@ class MainViewController: UITabBarController {
     
     func composeBtnClick(){
         print(__FUNCTION__)
-        let composeVC = ComposeViewController()
-        let nav = UINavigationController(rootViewController: composeVC)
-        presentViewController(nav, animated: true, completion: nil)
+        let isLogin:Bool = UserAccount.userLogin()
+        if isLogin
+        {
+            let composeVC = ComposeViewController()
+            let nav = UINavigationController(rootViewController: composeVC)
+            presentViewController(nav, animated: true, completion: nil)
+        }else{
+            SVProgressHUD.showErrorWithStatus("请登陆！")
+        }
+        
     }
     
     
