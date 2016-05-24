@@ -10,9 +10,7 @@ import UIKit
 
 let photoSelectorCollectionViewCellIdentifer = "photoSelectorCollectionViewCellIdentifer"
 class PhotoSelectorViewController: UIViewController {
-    
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -38,7 +36,7 @@ class PhotoSelectorViewController: UIViewController {
     //Mark:- lazy
     private lazy var collectionView : UICollectionView = UICollectionView(frame: CGRectZero, collectionViewLayout: PhotoSelectorCellLayout())
     
-    private lazy var images = [UIImage]()
+    lazy var images = [UIImage]()
     
 }
 

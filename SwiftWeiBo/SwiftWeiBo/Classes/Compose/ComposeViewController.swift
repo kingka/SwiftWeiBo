@@ -171,12 +171,16 @@ class ComposeViewController: UIViewController {
     }
     
     func send(){
-        let path = "2/statuses/update.json"
-        let params = ["access_token":UserAccount.loadAccount()!.access_token!,"status":textView.emoticonStr()]
-        NetworkTools.shareNetworkTools().POST(path, parameters: params, success: { (_, json) -> Void in
-                SVProgressHUD.showSuccessWithStatus("发送成功")
-                self.cancel()
-            }) { (_, error) -> Void in
+        
+        let image = photoSelctorVC.images.first
+        NetworkTools.shareNetworkTools().sendWeibo(textView.emoticonStr(), image: image, successCallback: { (status) -> () in
+            
+            SVProgressHUD.showSuccessWithStatus("发送成功")
+            self.cancel()
+            
+            }) { (error) -> () in
+                
+                print(error)
                 SVProgressHUD.showErrorWithStatus("发送失败")
         }
     }
