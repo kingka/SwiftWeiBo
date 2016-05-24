@@ -12,15 +12,19 @@ import SVProgressHUD
 class ComposeViewController: UIViewController {
     
     var toolBarBottomCons : NSLayoutConstraint?
-    
+    var photoViewHeightCons : NSLayoutConstraint?
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        textView.becomeFirstResponder()
+        if photoViewHeightCons?.constant == 0
+        {
+            textView.becomeFirstResponder()
+        }
     }
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         textView.resignFirstResponder()
+
     }
     
     override func viewDidLoad() {
@@ -30,6 +34,7 @@ class ComposeViewController: UIViewController {
         view.backgroundColor = UIColor.whiteColor()
         setupNav()
         setupTextView()
+        setupPhotoSelectorView()
         setupToolBar()
         
         //obser keyboard
@@ -37,7 +42,8 @@ class ComposeViewController: UIViewController {
         
         //将表情键盘控制器添加为当前控制器的子控制器
         addChildViewController(emoticonVC)
-        
+        //将图片选择控制器添加为当前控制器的子控制器
+        addChildViewController(photoSelctorVC)
     }
     
     func keyBoardFrameChange(notify : NSNotification){
@@ -114,6 +120,20 @@ class ComposeViewController: UIViewController {
         view.addConstraint(toolBarBottomCons!)
     }
     
+    func setupPhotoSelectorView(){
+        view.insertSubview(photoSelctorVC.view, belowSubview: toolBar)
+        
+        //layout
+        photoSelctorVC.view.translatesAutoresizingMaskIntoConstraints = false
+        self.photoViewHeightCons = NSLayoutConstraint(item: photoSelctorVC.view, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier: 1, constant: 0)
+        photoSelctorVC.view.snp_makeConstraints { (make) -> Void in
+            make.left.equalTo(view)
+            make.right.equalTo(view)
+            make.bottom.equalTo(view)
+        }
+        photoSelctorVC.view.addConstraint(photoViewHeightCons!)
+    }
+    
     func setupNav(){
         
         // left
@@ -163,7 +183,9 @@ class ComposeViewController: UIViewController {
     
     func selectPicture(){
        // print(__FUNCTION__)
-   
+        photoViewHeightCons?.constant = UIScreen.mainScreen().bounds.height * 0.5
+        view.layoutIfNeeded()
+        textView.resignFirstResponder()
     }
     
     func inputEmoticon(){
@@ -181,6 +203,8 @@ class ComposeViewController: UIViewController {
     }
     
     //MARK: -LAZY LOADING
+    lazy var photoSelctorVC : PhotoSelectorViewController = PhotoSelectorViewController()
+    
     // weak 相当于OC中的 __weak , 特点对象释放之后会将变量设置为nil
     // unowned 相当于OC中的 unsafe_unretained, 特点对象释放之后不会将变量设置为nil
     lazy var emoticonVC : EmoticonViewController = EmoticonViewController { [weak self](emoticon) -> () in
