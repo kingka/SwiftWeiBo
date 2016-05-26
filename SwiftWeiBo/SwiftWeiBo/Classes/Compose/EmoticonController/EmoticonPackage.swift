@@ -97,7 +97,7 @@ class EmoticonPackage: NSObject {
         //重新指向
         emoticons = result
         
-        print(emoticons?.count)
+        //print(emoticons?.count)
         
     }
     

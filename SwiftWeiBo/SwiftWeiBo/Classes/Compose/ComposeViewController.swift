@@ -9,6 +9,7 @@
 import UIKit
 import SVProgressHUD
 
+let maxLength : Int = 140
 class ComposeViewController: UIViewController {
     
     var toolBarBottomCons : NSLayoutConstraint?
@@ -36,6 +37,7 @@ class ComposeViewController: UIViewController {
         setupTextView()
         setupPhotoSelectorView()
         setupToolBar()
+        setupTipLabel()
         
         //obser keyboard
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyBoardFrameChange:", name: UIKeyboardWillChangeFrameNotification, object: nil)
@@ -85,6 +87,17 @@ class ComposeViewController: UIViewController {
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
+    func setupTipLabel(){
+        view.addSubview(tipLabel)
+        
+        tipLabel.snp_makeConstraints { (make) -> Void in
+            make.left.equalTo(view)
+            make.right.equalTo(view).offset(-10)
+            make.bottom.equalTo(toolBar.snp_top)
+            make.height.equalTo(44)
+        }
+    }
+    
     func setupTextView(){
         view.addSubview(textView)
         textView.delegate = self
@@ -96,7 +109,7 @@ class ComposeViewController: UIViewController {
             make.top.equalTo(view)
             make.height.equalTo(300)
         }
-        textView.font = UIFont.systemFontOfSize(15)
+        textView.font = UIFont.systemFontOfSize(20)
         
         textView.addSubview(textViewTip)
         textViewTip.snp_makeConstraints { (make) -> Void in
@@ -217,6 +230,13 @@ class ComposeViewController: UIViewController {
         
     }
 
+    private lazy var tipLabel : UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFontOfSize(15)
+        label.textAlignment = NSTextAlignment.Right
+        return label
+    }()
+    
     private lazy var toolBar : UIToolbar = {
         let toolBar = UIToolbar()
         var items = [UIBarButtonItem]()
@@ -277,5 +297,11 @@ extension ComposeViewController : UITextViewDelegate
     func textViewDidChange(textView: UITextView) {
         navigationItem.rightBarButtonItem?.enabled = textView.hasText()
         textViewTip.hidden = textView.hasText()
+        
+        //get text length
+        let count = textView.emoticonStr().characters.count
+        let result = maxLength - count
+        tipLabel.textColor = (result > 0) ? UIColor.darkGrayColor() : UIColor.redColor()
+        tipLabel.text = result == maxLength ? "" : "\(result)"
     }
 }
