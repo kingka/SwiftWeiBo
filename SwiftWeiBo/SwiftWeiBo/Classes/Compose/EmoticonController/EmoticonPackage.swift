@@ -18,6 +18,67 @@ class EmoticonPackage: NSObject {
     
     static let packageList : [EmoticonPackage] = EmoticonPackage.loadAllPacakges()!
     
+    class func changeText2AttributeText(str : String)->NSAttributedString?
+    {
+        let attributeStr = NSMutableAttributedString(string: str)
+        do{
+            //创建规则
+            let pattern = "\\[.*?\\]"
+            
+            //创建正则表达式对象
+            let regx = try NSRegularExpression(pattern: pattern, options: NSRegularExpressionOptions.CaseInsensitive)
+            
+            //开始匹配
+            let result = regx.matchesInString(str, options: NSMatchingOptions(rawValue: 0), range: NSMakeRange(0, str.characters.count))
+            
+            
+            //拿到匹配结果
+            var count = result.count
+            
+            if count > 0
+            {
+                //从最后面开始取，这样替换就后，就算字数长度跟原来不一样，也不影响前面的替换
+                let checkResult = result[--count]
+                
+                //拿出匹配到的字符串
+                let tempStr = (str as NSString).substringWithRange(checkResult.range)
+                
+                //根据拿到的字符串，去找到对应的emoticon
+                 if let emoticon = getEmoticonWithStr(tempStr)
+                 {
+                    //根据 emoticon 生成属性字符串
+                    let attrStr = EmoticonTextAttachment.createImageText(emoticon, font: UIFont.systemFontOfSize(20))
+                    //替换
+                    attributeStr.replaceCharactersInRange(checkResult.range, withAttributedString: attrStr)
+                 }
+                
+            }
+            
+            return attributeStr
+            
+        }catch{
+            print(error)
+            return nil
+        }
+    }
+    
+    class func getEmoticonWithStr(str : String)->Emoticon?
+    {
+        var emoticon : Emoticon?
+        for package in EmoticonPackage.packageList
+        {
+            emoticon = package.emoticons?.filter({ (e) -> Bool in
+                return e.chs == str
+            }).last
+            
+            if emoticon != nil
+            {
+                break
+            }
+        }
+        return emoticon
+    }
+    
     class func loadAllPacakges()->[EmoticonPackage]?{
         //packages 用来存放最后需要返回的值
         var packages = [EmoticonPackage]()

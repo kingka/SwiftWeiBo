@@ -15,7 +15,8 @@ class StatusesForwordCell: StatusesCell {
         didSet{
             let name = statuses?.retweeted_status?.user?.name ?? ""
             let text = statuses?.retweeted_status?.text ?? ""
-            forwordLabel.text = "@"+name+": "+text
+            //forwordLabel.text = "@"+name+": "+text
+            forwordLabel.attributedText = EmoticonPackage.changeText2AttributeText(name + ": " + text)
         }
     }
 

@@ -20,7 +20,7 @@ class StatusesCell: UITableViewCell {
     var statuses : Statuses?
         {
         didSet{
-            context.text = statuses?.text
+            context.attributedText = EmoticonPackage.changeText2AttributeText(statuses?.text ?? "")
             topView.statuses = statuses
             //计算配图尺寸
             picView.statuses = statuses?.retweeted_status != nil ? statuses?.retweeted_status :  statuses
