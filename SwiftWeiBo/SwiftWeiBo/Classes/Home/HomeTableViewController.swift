@@ -121,6 +121,7 @@ class HomeTableViewController: BaseViewController {
             
             if error != nil
             {
+                print(error)
                 return
             }
             // 下拉刷新
