@@ -23,8 +23,8 @@ class StatusesDAO: NSObject {
         //缓存字段 ： statusId（每条微博的id） statusText(网络返回的微博数据) userId（当前登陆的微博用户id）
         let userId = UserAccount.account?.uid
         
-        let sql = "INSERT INTO T_Status" +
-        "statusId,statusText,userId" +
+        let sql = "INSERT INTO T_Status(" +
+        "statusId,statusText,userId)" +
         "VALUES" +
         "(?,?,?);"
         
