@@ -18,6 +18,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
+        //create db
+        SQLiteManager.shareSQLiteManager().openDB("weibo.db")
+        
         //add notification obser
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "switchRootController:", name: weiboSwitchRootControllerKey, object: nil)
         

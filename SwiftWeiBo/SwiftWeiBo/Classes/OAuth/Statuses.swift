@@ -120,6 +120,9 @@ class Statuses: NSObject {
         }
 
         NetworkTools.shareNetworkTools().GET(url, parameters: param, progress: nil, success: { (_, Json) -> Void in
+            
+            StatusesDAO.cacheStatuses(Json!["statuses"] as! [[String: AnyObject]])
+            
                 //1 json to model , 然后装在集合
             //print("json= \(Json)")
             let models = dict2model(Json!["statuses"] as! [[String: AnyObject]])

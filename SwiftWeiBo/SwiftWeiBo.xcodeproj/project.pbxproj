@@ -39,6 +39,7 @@
 		F92259341CFBDF1400A49242 /* FMDatabaseVariadic.swift in Sources */ = {isa = PBXBuildFile; fileRef = F922592D1CFBDF1400A49242 /* FMDatabaseVariadic.swift */; };
 		F92259371CFBE1B500A49242 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F92259361CFBE1B500A49242 /* libsqlite3.0.tbd */; };
 		F922593C1CFBE3BC00A49242 /* StatusesDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F922593B1CFBE3BC00A49242 /* StatusesDAO.swift */; };
+		F922593E1CFBEA3B00A49242 /* SQLiteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F922593D1CFBEA3B00A49242 /* SQLiteManager.swift */; };
 		F93370DA1C7ED994002CD754 /* PoperAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93370D91C7ED994002CD754 /* PoperAnimator.swift */; };
 		F93370DD1C7EE44F002CD754 /* QRCodeController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F93370DC1C7EE44F002CD754 /* QRCodeController.storyboard */; };
 		F93370DF1C8023EE002CD754 /* QRCodeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93370DE1C8023EE002CD754 /* QRCodeController.swift */; };
@@ -134,6 +135,7 @@
 		F92259361CFBE1B500A49242 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		F92259381CFBE2B900A49242 /* FMDB-Bridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FMDB-Bridge.h"; sourceTree = "<group>"; };
 		F922593B1CFBE3BC00A49242 /* StatusesDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusesDAO.swift; sourceTree = "<group>"; };
+		F922593D1CFBEA3B00A49242 /* SQLiteManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SQLiteManager.swift; sourceTree = "<group>"; };
 		F93370D91C7ED994002CD754 /* PoperAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PoperAnimator.swift; sourceTree = "<group>"; };
 		F93370DC1C7EE44F002CD754 /* QRCodeController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = QRCodeController.storyboard; sourceTree = "<group>"; };
 		F93370DE1C8023EE002CD754 /* QRCodeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeController.swift; sourceTree = "<group>"; };
@@ -356,6 +358,7 @@
 				F935B22C1CA0F3010010DF54 /* NetworkTools.swift */,
 				F9878BDB1CACD52200858258 /* String+Category.swift */,
 				F92258A31CE0358E00A49242 /* UIColor+Category.swift */,
+				F922593D1CFBEA3B00A49242 /* SQLiteManager.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -664,6 +667,7 @@
 				F91E01FC1C43EACD00DA3CEB /* ProfileTableViewController.swift in Sources */,
 				F92259061CF2D70500A49242 /* UITextView+Category.swift in Sources */,
 				F92259341CFBDF1400A49242 /* FMDatabaseVariadic.swift in Sources */,
+				F922593E1CFBEA3B00A49242 /* SQLiteManager.swift in Sources */,
 				F98911F11CC4836300752F82 /* StatusesCell.swift in Sources */,
 				F92259301CFBDF1400A49242 /* FMDatabasePool.m in Sources */,
 				F935B22D1CA0F3010010DF54 /* NetworkTools.swift in Sources */,
