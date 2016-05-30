@@ -21,6 +21,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //create db
         SQLiteManager.shareSQLiteManager().openDB("weibo.db")
         
+        //clean outdate 
+        StatusesDAO.cleanStatuses()
+        
         //add notification obser
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "switchRootController:", name: weiboSwitchRootControllerKey, object: nil)
         

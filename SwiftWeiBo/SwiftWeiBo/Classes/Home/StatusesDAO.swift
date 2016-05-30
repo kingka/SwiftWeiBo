@@ -10,6 +10,26 @@ import UIKit
 
 class StatusesDAO: NSObject {
     
+    /// 清空过期的数据
+    class  func cleanStatuses() {
+        
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        formatter.locale = NSLocale(localeIdentifier: "en")
+        
+        let date = NSDate(timeIntervalSinceNow: -60)
+        let dateStr = formatter.stringFromDate(date)
+         print("dateStr:\(dateStr)")
+        
+        // 定义SQL语句
+        let sql = "DELETE FROM T_Status WHERE createDate  <= '\(dateStr)';"
+        
+        // 执行SQL语句
+        SQLiteManager.shareSQLiteManager().dbQueue?.inDatabase({ (db) -> Void in
+            db.executeUpdate(sql, withArgumentsInArray: nil)
+        })
+    }
+    
     class func loadStatues(since_id: Int, max_id: Int, finished:(dicts:[[String : AnyObject]]?,error:NSError?)->()){
         
         //1 读取本地DB data
