@@ -30,6 +30,15 @@
 		F92259061CF2D70500A49242 /* UITextView+Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92259011CF2D70500A49242 /* UITextView+Category.swift */; };
 		F922590C1CF4387400A49242 /* PhotoSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F922590A1CF4387400A49242 /* PhotoSelectorViewController.swift */; };
 		F922590D1CF4387400A49242 /* UIImage+Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = F922590B1CF4387400A49242 /* UIImage+Category.swift */; };
+		F922592E1CFBDF1400A49242 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = F92259211CFBDF1400A49242 /* FMDatabase.m */; };
+		F922592F1CFBDF1400A49242 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = F92259231CFBDF1400A49242 /* FMDatabaseAdditions.m */; };
+		F92259301CFBDF1400A49242 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = F92259251CFBDF1400A49242 /* FMDatabasePool.m */; };
+		F92259311CFBDF1400A49242 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = F92259271CFBDF1400A49242 /* FMDatabaseQueue.m */; };
+		F92259321CFBDF1400A49242 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = F922592A1CFBDF1400A49242 /* FMResultSet.m */; };
+		F92259331CFBDF1400A49242 /* FMDatabaseAdditionsVariadic.swift in Sources */ = {isa = PBXBuildFile; fileRef = F922592C1CFBDF1400A49242 /* FMDatabaseAdditionsVariadic.swift */; };
+		F92259341CFBDF1400A49242 /* FMDatabaseVariadic.swift in Sources */ = {isa = PBXBuildFile; fileRef = F922592D1CFBDF1400A49242 /* FMDatabaseVariadic.swift */; };
+		F92259371CFBE1B500A49242 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F92259361CFBE1B500A49242 /* libsqlite3.0.tbd */; };
+		F922593C1CFBE3BC00A49242 /* StatusesDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = F922593B1CFBE3BC00A49242 /* StatusesDAO.swift */; };
 		F93370DA1C7ED994002CD754 /* PoperAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93370D91C7ED994002CD754 /* PoperAnimator.swift */; };
 		F93370DD1C7EE44F002CD754 /* QRCodeController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F93370DC1C7EE44F002CD754 /* QRCodeController.storyboard */; };
 		F93370DF1C8023EE002CD754 /* QRCodeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93370DE1C8023EE002CD754 /* QRCodeController.swift */; };
@@ -109,6 +118,22 @@
 		F92259011CF2D70500A49242 /* UITextView+Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextView+Category.swift"; sourceTree = "<group>"; };
 		F922590A1CF4387400A49242 /* PhotoSelectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoSelectorViewController.swift; sourceTree = "<group>"; };
 		F922590B1CF4387400A49242 /* UIImage+Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Category.swift"; sourceTree = "<group>"; };
+		F92259201CFBDF1400A49242 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
+		F92259211CFBDF1400A49242 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
+		F92259221CFBDF1400A49242 /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
+		F92259231CFBDF1400A49242 /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseAdditions.m; sourceTree = "<group>"; };
+		F92259241CFBDF1400A49242 /* FMDatabasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabasePool.h; sourceTree = "<group>"; };
+		F92259251CFBDF1400A49242 /* FMDatabasePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabasePool.m; sourceTree = "<group>"; };
+		F92259261CFBDF1400A49242 /* FMDatabaseQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseQueue.h; sourceTree = "<group>"; };
+		F92259271CFBDF1400A49242 /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseQueue.m; sourceTree = "<group>"; };
+		F92259281CFBDF1400A49242 /* FMDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDB.h; sourceTree = "<group>"; };
+		F92259291CFBDF1400A49242 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
+		F922592A1CFBDF1400A49242 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
+		F922592C1CFBDF1400A49242 /* FMDatabaseAdditionsVariadic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FMDatabaseAdditionsVariadic.swift; sourceTree = "<group>"; };
+		F922592D1CFBDF1400A49242 /* FMDatabaseVariadic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FMDatabaseVariadic.swift; sourceTree = "<group>"; };
+		F92259361CFBE1B500A49242 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		F92259381CFBE2B900A49242 /* FMDB-Bridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FMDB-Bridge.h"; sourceTree = "<group>"; };
+		F922593B1CFBE3BC00A49242 /* StatusesDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusesDAO.swift; sourceTree = "<group>"; };
 		F93370D91C7ED994002CD754 /* PoperAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PoperAnimator.swift; sourceTree = "<group>"; };
 		F93370DC1C7EE44F002CD754 /* QRCodeController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = QRCodeController.storyboard; sourceTree = "<group>"; };
 		F93370DE1C8023EE002CD754 /* QRCodeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeController.swift; sourceTree = "<group>"; };
@@ -146,6 +171,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F92259371CFBE1B500A49242 /* libsqlite3.0.tbd in Frameworks */,
 				E79A03A20D9735B3EF8BC614 /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -179,6 +205,7 @@
 		A9969D4F39B41F6E7DC8A8CD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F92259361CFBE1B500A49242 /* libsqlite3.0.tbd */,
 				9C94DCA27007B5E22D2B298A /* Pods.framework */,
 			);
 			name = Frameworks;
@@ -213,6 +240,7 @@
 				F91E01BD1C43E69000DA3CEB /* AppDelegate.swift */,
 				F91E01C41C43E69100DA3CEB /* Assets.xcassets */,
 				F91E01C91C43E69100DA3CEB /* Info.plist */,
+				F92259381CFBE2B900A49242 /* FMDB-Bridge.h */,
 			);
 			path = SwiftWeiBo;
 			sourceTree = "<group>";
@@ -290,6 +318,7 @@
 				F9F14C291CD09E7900DB2CE0 /* StatusesNormalCell.swift */,
 				F9F14C2B1CD3034200DB2CE0 /* HomeRefreshControl.swift */,
 				F9F14C2D1CD3036900DB2CE0 /* HomeRefreshControl.xib */,
+				F922593B1CFBE3BC00A49242 /* StatusesDAO.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -323,6 +352,7 @@
 		F91E01F21C43E9CB00DA3CEB /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				F922591F1CFBDF1400A49242 /* fmdb */,
 				F935B22C1CA0F3010010DF54 /* NetworkTools.swift */,
 				F9878BDB1CACD52200858258 /* String+Category.swift */,
 				F92258A31CE0358E00A49242 /* UIColor+Category.swift */,
@@ -377,6 +407,34 @@
 				F922590B1CF4387400A49242 /* UIImage+Category.swift */,
 			);
 			path = PhotoSelectorViewController;
+			sourceTree = "<group>";
+		};
+		F922591F1CFBDF1400A49242 /* fmdb */ = {
+			isa = PBXGroup;
+			children = (
+				F92259201CFBDF1400A49242 /* FMDatabase.h */,
+				F92259211CFBDF1400A49242 /* FMDatabase.m */,
+				F92259221CFBDF1400A49242 /* FMDatabaseAdditions.h */,
+				F92259231CFBDF1400A49242 /* FMDatabaseAdditions.m */,
+				F92259241CFBDF1400A49242 /* FMDatabasePool.h */,
+				F92259251CFBDF1400A49242 /* FMDatabasePool.m */,
+				F92259261CFBDF1400A49242 /* FMDatabaseQueue.h */,
+				F92259271CFBDF1400A49242 /* FMDatabaseQueue.m */,
+				F92259281CFBDF1400A49242 /* FMDB.h */,
+				F92259291CFBDF1400A49242 /* FMResultSet.h */,
+				F922592A1CFBDF1400A49242 /* FMResultSet.m */,
+				F922592B1CFBDF1400A49242 /* Swift extensions */,
+			);
+			path = fmdb;
+			sourceTree = "<group>";
+		};
+		F922592B1CFBDF1400A49242 /* Swift extensions */ = {
+			isa = PBXGroup;
+			children = (
+				F922592C1CFBDF1400A49242 /* FMDatabaseAdditionsVariadic.swift */,
+				F922592D1CFBDF1400A49242 /* FMDatabaseVariadic.swift */,
+			);
+			path = "Swift extensions";
 			sourceTree = "<group>";
 		};
 		F93370DB1C7EE439002CD754 /* QRCode */ = {
@@ -605,22 +663,28 @@
 			files = (
 				F91E01FC1C43EACD00DA3CEB /* ProfileTableViewController.swift in Sources */,
 				F92259061CF2D70500A49242 /* UITextView+Category.swift in Sources */,
+				F92259341CFBDF1400A49242 /* FMDatabaseVariadic.swift in Sources */,
 				F98911F11CC4836300752F82 /* StatusesCell.swift in Sources */,
+				F92259301CFBDF1400A49242 /* FMDatabasePool.m in Sources */,
 				F935B22D1CA0F3010010DF54 /* NetworkTools.swift in Sources */,
 				F92258A61CE0373600A49242 /* PhotoBrowserCell.swift in Sources */,
+				F92259321CFBDF1400A49242 /* FMResultSet.m in Sources */,
 				F989122D1CCE190300752F82 /* statusTopView.swift in Sources */,
 				F935B2311CA298BF0010DF54 /* UserAccount.swift in Sources */,
 				F92258A21CDB3CBD00A49242 /* PhotoBrowserController.swift in Sources */,
 				F9F14C281CD0962500DB2CE0 /* StatusesForwordCell.swift in Sources */,
 				F91E01F61C43EA9000DA3CEB /* HomeTableViewController.swift in Sources */,
+				F92259311CFBDF1400A49242 /* FMDatabaseQueue.m in Sources */,
 				F989122B1CCE17F000752F82 /* statusBottomView.swift in Sources */,
 				F9F14C261CCF4A5700DB2CE0 /* picViews.swift in Sources */,
 				F98911F91CC76A2700752F82 /* NSDate+Category.swift in Sources */,
 				F91E01F41C43EA3E00DA3CEB /* MainViewController.swift in Sources */,
+				F922592F1CFBDF1400A49242 /* FMDatabaseAdditions.m in Sources */,
 				F98911ED1CBF677900752F82 /* Statuses.swift in Sources */,
 				F93370DF1C8023EE002CD754 /* QRCodeController.swift in Sources */,
 				F98911EB1CB62A7B00752F82 /* WelcomeViewController.swift in Sources */,
 				F935B2101C97FA2B0010DF54 /* OAuthViewController.swift in Sources */,
+				F92259331CFBDF1400A49242 /* FMDatabaseAdditionsVariadic.swift in Sources */,
 				F91E01F81C43EAA900DA3CEB /* DiscoverTableViewController.swift in Sources */,
 				F922590D1CF4387400A49242 /* UIImage+Category.swift in Sources */,
 				F9F14C2C1CD3034200DB2CE0 /* HomeRefreshControl.swift in Sources */,
@@ -633,7 +697,9 @@
 				F9DA133D1C464658003944BC /* BaseViewController.swift in Sources */,
 				F9DA133F1C46498E003944BC /* VisitView.swift in Sources */,
 				F92259021CF2D70500A49242 /* EmoticonPackage.swift in Sources */,
+				F922593C1CFBE3BC00A49242 /* StatusesDAO.swift in Sources */,
 				F92259041CF2D70500A49242 /* EmoticonTextAttachment.swift in Sources */,
+				F922592E1CFBDF1400A49242 /* FMDatabase.m in Sources */,
 				F922590C1CF4387400A49242 /* PhotoSelectorViewController.swift in Sources */,
 				F91E01BE1C43E69000DA3CEB /* AppDelegate.swift in Sources */,
 				F9F14C2A1CD09E7900DB2CE0 /* StatusesNormalCell.swift in Sources */,
@@ -776,6 +842,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.imanol.weibo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "SwiftWeibo/FMDB-Bridge.h";
 			};
 			name = Debug;
 		};
@@ -793,6 +860,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.imanol.weibo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "SwiftWeibo/FMDB-Bridge.h";
 			};
 			name = Release;
 		};
